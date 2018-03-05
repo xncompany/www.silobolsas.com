@@ -7,7 +7,7 @@ use App\Http\Repositories\SmartiumRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
-class SilobagsController extends Controller
+class UsersController extends Controller
 {
     /**
      * get Silobag by Id
@@ -15,7 +15,7 @@ class SilobagsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function getById($id) {
-        return (new SmartiumRepository)->getSilobag($id);
+    public function getLands($id) {
+        return (new SmartiumRepository)->getLandsByUser($id);
     }
 }

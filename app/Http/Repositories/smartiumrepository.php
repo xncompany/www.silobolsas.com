@@ -4,6 +4,8 @@ namespace App\Http\Repositories;
 
 use GuzzleHttp\Client;
 use App\Http\Resources\Silobag;
+use App\Http\Resources\Land;
+use App\Http\Resources\SmartiumCollection;
 
 class SmartiumRepository 
 {
@@ -21,5 +23,12 @@ class SmartiumRepository
         $response = $this->client->request('GET', "silobags/$id");
         $data = json_decode($response->getBody(), true);
         return Silobag::make($data)->resolve();
+    }
+
+    public function getLandsByUser($id)
+    {
+        $response = $this->client->request('GET', "lands?user=$id");
+        $data = json_decode($response->getBody(), true);
+        return SmartiumCollection::get(new Land($data));
     }
 }
