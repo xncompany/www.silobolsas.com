@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Land extends JsonResource
+class Alert extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,11 @@ class Land extends JsonResource
     {
         return [
             'id' => $this->resource['id'],
-            'description' => $this->resource['description'],
-            'isActive' => $this->resource['active'],
-            'createdAt' => $this->resource['created_at']
+            'range' => array(
+            	'min' => $this->resource['min_amount'],
+            	'max' => $this->resource['max_amount']
+            ),
+            'createdAt' => $this->resource['created_at'],
         ];
     }
 }

@@ -9,6 +9,16 @@ use Illuminate\Http\JsonResponse;
 
 class UsersController extends Controller
 {
+	/**
+     * get User by Id
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function getById($id) {
+        return (new SmartiumRepository)->getUserById($id);
+    }
+
     /**
      * get Silobag by Id
      *

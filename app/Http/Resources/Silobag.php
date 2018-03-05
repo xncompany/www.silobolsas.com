@@ -16,7 +16,6 @@ class Silobag extends JsonResource
     {
         return [
             'id' => $this->resource['id'],
-            'idLess' => $this->resource['less_id'],
             'idLand' => $this->resource['land'],
             'description' => $this->resource['description'],
             'isActive' => $this->resource['active'],
