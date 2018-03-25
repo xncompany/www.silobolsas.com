@@ -3,8 +3,8 @@
 namespace App\Http\Repositories;
 
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 use App\Http\Resources\Silobag;
-use App\Http\Resources\Land;
 use App\Http\Resources\Alert;
 use App\Http\Resources\Device;
 use App\Http\Resources\Metric;
@@ -18,7 +18,7 @@ class SmartiumRepository
     public function __construct() {
         $this->client = new Client([
             'base_uri' => 'http://api.silobolsas.com/',
-            'timeout'  => 5.0,
+            'timeout'  => 5.0
         ]);
     }
 
@@ -34,20 +34,6 @@ class SmartiumRepository
         $response = $this->client->request('GET', "silobags/$id");
         $data = json_decode($response->getBody(), true);
         return Silobag::make($data)->resolve();
-    }
-
-    public function getLandsByUser($id)
-    {
-        $response = $this->client->request('GET', "users/$id/lands");
-        $data = json_decode($response->getBody(), true);
-        return SmartiumCollection::get(new Land($data));
-    }
-
-    public function getSilobagsByLand($id)
-    {
-        $response = $this->client->request('GET', "lands/$id/silobags");
-        $data = json_decode($response->getBody(), true);
-        return SmartiumCollection::get(new Silobag($data));
     }
 
     public function getDevice($id)

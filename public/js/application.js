@@ -1314,281 +1314,6 @@
 
 })();
 
-(function() {
-    'use strict';
-
-    $(runSweetAlert);
-
-    function runSweetAlert() {
-
-        $('#swal-demo1').on('click', function(e) {
-            e.preventDefault();
-            swal('Here\'s a message!');
-        });
-
-        $('#swal-demo2').on('click', function(e) {
-            e.preventDefault();
-            swal('Here\'s a message!', 'It\'s pretty, isn\'t it?');
-        });
-
-        $('#swal-demo3').on('click', function(e) {
-            e.preventDefault();
-            swal('Good job!', 'You clicked the button!', 'success');
-        });
-
-        $('#swal-demo4').on('click', function(e) {
-            e.preventDefault();
-            swal({
-                    title: 'Are you sure?',
-                    text: 'You will not be able to recover this imaginary file!',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Yes, delete it!',
-                    closeOnConfirm: false
-                },
-                function() {
-                    swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
-                });
-
-        });
-
-        $('#swal-demo5').on('click', function(e) {
-            e.preventDefault();
-            swal({
-                title: 'Are you sure?',
-                text: 'You will not be able to recover this imaginary file!',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#DD6B55',
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel plx!',
-                closeOnConfirm: false,
-                closeOnCancel: false
-            }, function(isConfirm) {
-                if (isConfirm) {
-                    swal('Deleted!', 'Your imaginary file has been deleted.', 'success');
-                } else {
-                    swal('Cancelled', 'Your imaginary file is safe :)', 'error');
-                }
-            });
-
-        });
-    }
-
-})();
-
-(function() {
-    'use strict';
-
-    $(formUpload);
-
-    function formUpload() {
-
-        if(typeof Dropzone === 'undefined') return;
-
-        // Dropzone settings
-        Dropzone.options.dropzoneArea = {
-            autoProcessQueue: false,
-            uploadMultiple: true,
-            parallelUploads: 100,
-            maxFiles: 100,
-            dictDefaultMessage: '<em class="ion-upload text-info icon-2x"></em><br>Drop files here to upload', // default messages before first drop
-            paramName: 'file', // The name that will be used to transfer the file
-            maxFilesize: 2, // MB
-            addRemoveLinks: true,
-            accept: function(file, done) {
-                if (file.name === 'justinbieber.jpg') {
-                    done('Naha, you dont. :)');
-                } else {
-                    done();
-                }
-            },
-            init: function() {
-                var dzHandler = this;
-
-                this.element.querySelector('button[type=submit]').addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    dzHandler.processQueue();
-                });
-                this.on('addedfile', function(file) {
-                    console.log('Added file: ' + file.name);
-                });
-                this.on('removedfile', function(file) {
-                    console.log('Removed file: ' + file.name);
-                });
-                this.on('sendingmultiple', function() {
-
-                });
-                this.on('successmultiple', function(/*files, response*/) {
-
-                });
-                this.on('errormultiple', function(/*files, response*/) {
-
-                });
-            }
-
-        };
-    }
-
-})();
-
-(function() {
-    'use strict';
-
-    $(formEditor);
-
-    function formEditor() {
-
-        // Summernote HTML editor
-        $('.summernote').each(function(){
-            $(this).summernote({
-                height: 380
-            });
-        });
-
-        $('.summernote-air').each(function(){
-            $(this).summernote({
-                airMode: true
-            });
-        });
-
-    }
-
-})();
-
-(function() {
-    'use strict';
-
-    $(formAdvanced);
-
-    function formAdvanced() {
-
-        if ( !$.fn.select2 ||
-             !$.fn.datepicker ||
-             !$.fn.clockpicker ||
-             !$.fn.colorpicker ) return;
-
-        // Select 2
-
-        $('#select2-1').select2();
-        $('#select2-2').select2();
-        $('#select2-3').select2();
-        $('#select2-4').select2({
-            placeholder: 'Select a state',
-            allowClear: true
-        });
-
-        // Datepicker
-
-        $('#example-datepicker-1').datepicker();
-        $('#example-datepicker-2').datepicker();
-        $('#example-datepicker-3').datepicker();
-        $('#example-datepicker-4')
-            .datepicker({
-                container:'#example-datepicker-container-4'
-            });
-        $('#example-datepicker-5')
-            .datepicker({
-                container:'#example-datepicker-container-5'
-            });
-
-        // Clockpicker
-        var cpInput = $('.clockpicker').clockpicker();
-        // auto close picker on scroll
-        $('main').scroll(function() {
-            cpInput.clockpicker('hide');
-        });
-
-
-        // UI SLider (noUiSlider)
-
-        $('.ui-slider').each(function() {
-
-            noUiSlider.create(this, {
-                start: $(this).data('start'),
-                connect: true,
-                range: {
-                    'min': 0,
-                    'max': 100,
-                }
-            });
-        });
-
-        // Range selectable
-        $('.ui-slider-range').each(function() {
-            noUiSlider.create(this, {
-                start: [25, 75],
-                range: {
-                    'min': 0,
-                    'max': 100
-                },
-                connect: true
-            });
-
-        });
-
-        // Live Values
-        $('.ui-slider-values').each(function() {
-            var slider = this;
-
-            noUiSlider.create(slider, {
-                start: [35, 75],
-                connect: true,
-                // direction: 'rtl',
-                behaviour: 'tap-drag',
-                range: {
-                    'min': 0,
-                    'max': 100
-                }
-            });
-
-            slider.noUiSlider.on('slide', updateValues);
-            updateValues();
-
-            function updateValues() {
-                var values = slider.noUiSlider.get();
-                // Connecto to live values
-                $('#ui-slider-value-lower').html(values[0]);
-                $('#ui-slider-value-upper').html(values[1]);
-            }
-        });
-
-        // Colorpicker
-
-        $('#cp-demo-basic').colorpicker({
-            customClass: 'colorpicker-2x',
-            sliders: {
-                saturation: {
-                    maxLeft: 200,
-                    maxTop: 200
-                },
-                hue: {
-                    maxTop: 200
-                },
-                alpha: {
-                    maxTop: 200
-                }
-            }
-        });
-        $('#cp-demo-component').colorpicker();
-        $('#cp-demo-hex').colorpicker();
-
-        $('#cp-demo-bootstrap').colorpicker({
-            colorSelectors: {
-                'default': '#777777',
-                'primary': '#337ab7',
-                'success': '#5cb85c',
-                'info': '#5bc0de',
-                'warning': '#f0ad4e',
-                'danger': '#d9534f'
-            }
-        });
-
-    }
-
-})();
 
 (function() {
     'use strict';
@@ -1709,6 +1434,7 @@
     }
 
 })();
+
 (function() {
     'use strict';
 
@@ -1922,53 +1648,7 @@
 })();
 
 
-(function() {
-    'use strict';
 
-    $(initHeader);
-
-    function initHeader() {
-
-        // Search modal
-        var modalSearch = $('.modal-search');
-        $('#header-search').on('click', function(e) {
-            e.preventDefault();
-            modalSearch
-                .on('show.bs.modal', function() {
-                    // Add class for white backdrop
-                    $('body').addClass('modal-backdrop-soft');
-                })
-                .on('hidden.bs.modal', function() {
-                    // Remove class for white backdrop (if not will affect future modals)
-                    $('body').removeClass('modal-backdrop-soft');
-                })
-                .on('shown.bs.modal', function() {
-                    // Auto focus the search input
-                    $('.header-input-search').focus();
-                })
-                .modal()
-                ;
-        });
-
-        // Settings modal
-        var modalSettings = $('.modal-settings');
-        $('#header-settings').on('click', function(){
-            modalSettings
-                .on('show.bs.modal', function() {
-                    // Add class for soft backdrop
-                    $('body').addClass('modal-backdrop-soft');
-                })
-                .on('hidden.bs.modal', function() {
-                    // Remove class for soft backdrop (if not will affect future modals)
-                    $('body').removeClass('modal-backdrop-soft');
-                })
-                .modal()
-                ;
-        });
-
-    }
-
-})();
 (function() {
     'use strict';
 
@@ -2319,31 +1999,77 @@
 (function(){
     'use strict';
 
-    $(initMessages);
+    $(initModal);
 
-    function initMessages() {
-        var msgList = $('.msg-display');
+    function initModal() {
 
-        msgList.each(function() {
-            var msg = $(this);
+        $('#compose').on('click', function(){
+            $('.loader-inner').hide();
+            $('#buttonlabel').show();
+            $('.modal-compose').modal();
+            $("#modal-submit").removeAttr("disabled");
+        });
 
-            msg.on('click', function(e){
-                // Ignores drodown click to avoid opening modal at the same time
-                if( $(e.target).is('.dropdown') ||
-                    $(e.target).parents('.dropdown').length > 0  ) {
-                    return;
+        $('#modal-submit').on('click', function(){
+            $('#buttonlabel').hide();
+            $('.loader-inner').show();
+            $("#modal-submit").attr("disabled", "disabled");
+            $(".form-ajax").submit();
+        });
+    }
+
+})();
+
+(function(){
+    'use strict';
+
+    $(initLands);
+
+    function initLands() {
+
+        $('#formLands').ajaxForm({
+            error: function() {
+                $('.modal-compose').modal('toggle');
+                $('#formLands').find("input[type=text], textarea").val("");
+                
+                swal('Ooops!', 'Hubo un error. Ya quedó registrado en el Log!', 'error');
+            },
+            success: function(data) {
+                $('.modal-compose').modal('toggle');
+                $('#formLands').find("input[type=text], textarea").val("");
+
+                $('#datatable1').DataTable().row.add( [
+                    data.id,
+                    data.description,
+                    data.createdAt
+                ] ).draw( false );
+            }
+        });
+
+        $('.delete-land').on('click', function(e) {
+            var id = $(this).data('id');
+            e.preventDefault();
+            swal({
+                title: 'Estás seguro?',
+                text: 'Vas a borrar este campo y todos sus componentes asociados!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si, borrar!',
+                cancelButtonText: 'No, cancelar!',
+                closeOnConfirm: true,
+                closeOnCancel: true
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    $.ajax({url: 'lands/' + id, type: 'DELETE'});
+                    $('#datatable1').DataTable()
+                        .row('.row-' + id)
+                        .remove()
+                        .draw();
                 }
-                // Open modal
-                $('.modal-message').modal();
-
             });
 
         });
-
-        $('#compose').on('click', function(){
-            $('.modal-compose').modal();
-        });
-
     }
 
 })();

@@ -15,24 +15,18 @@
                           <th class="sort-numeric">ID</th>
                           <th>Nombre</th>
                           <th>Alta</th>
+                          <th>&nbsp;</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>4</td>
-                          <td>El Paye</td>
-                          <td>2018-01-21 09:23:11</td>
+                      @foreach ($lands as $land)
+                        <tr class="row-{{ $land['id'] }}">
+                          <td>{{ $land['id'] }}</td>
+                          <td>{{ $land['description'] }}</td>
+                          <td>{{ $land['createdAt'] }}</td>
+                          <td><a data-id="{{ $land['id'] }}" class="btn ion-android-delete delete-land" href="#"></a></td>
                         </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>El Mosquito</td>
-                          <td>2018-02-22 21:14:32</td>
-                        </tr>
-                        <tr>
-                          <td>6</td>
-                          <td>La Candelaria</td>
-                          <td>2018-02-26 12:52:21</td>
-                        </tr>
+                      @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -54,15 +48,21 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-body">
-                        <form action="">
+                        <form class="form-ajax" action="/lands" method="POST" id="formLands">
                           <div class="mda-form-group">
                             <div class="mda-form-control">
-                              <input class="form-control" rows="3" aria-multiline="true" tabindex="0" aria-invalid="false">
+                              <input class="form-control" type="text" tabindex="0" name="description">
+                              <input type="hidden" name="user" value="1">
+                              <input type="hidden" name="active" value="1">
                               <div class="mda-form-control-line"></div>
                               <label>Nombre del Campo:</label>
                             </div>
                           </div>
-                          <button class="btn btn-success" type="button" data-dismiss="modal">Agregar Campo</button>
+                          <button class="btn btn-success" type="button" id="modal-submit">
+                            <span id="buttonlabel">Agregar Campo</span>
+                            <div class="loader-inner ball-pulse"></div>
+                          </button>
+
                         </form>
                       </div>
                     </div>

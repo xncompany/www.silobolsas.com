@@ -91,6 +91,8 @@
     <!-- Datamaps-->
     <script src="vendor/topojson/topojson.min.js"></script>
     <script src="vendor/datamaps/dist/datamaps.all.js"></script>
+    <!-- ajaxform-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha384-FzT3vTVGXqf7wRfy8k4BiyzvbNfeYjK+frTVqZeNDFl8woCbF0CYG6g2fMEFFo/i" crossorigin="anonymous"></script>
     <!-- endbuild-->
     <!-- App script-->
     <script src="js/application.js"></script>
