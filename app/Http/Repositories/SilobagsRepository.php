@@ -7,6 +7,7 @@ use App\Http\Repositories\LandsRepository;
 use App\Http\Resources\SmartiumCollection;
 use App\Http\Resources\Land;
 use App\Http\Resources\Silobag;
+use App\Http\Resources\Device;
 use Illuminate\Http\Request;
 
 class SilobagsRepository extends SmartiumRepository 
@@ -15,6 +16,11 @@ class SilobagsRepository extends SmartiumRepository
     	parent::__construct();
     }
 
+    /**
+     * List Silobag for given User
+     *
+     * @return Response
+     */
     public function list($idUser)
     {
     	$list = array();
@@ -28,6 +34,11 @@ class SilobagsRepository extends SmartiumRepository
         return $list;
     }
 
+    /**
+     * Create Silobag
+     *
+     * @return Response
+     */
     public function create(Request $request) 
     {
         $body = $request->getContent();
@@ -37,9 +48,39 @@ class SilobagsRepository extends SmartiumRepository
         return Land::make($data)->resolve();
     }
 
+    /**
+     * Delete Silobag by Id.
+     *
+     * @return Response
+     */
     public function delete($id) {
         $response = $this->client->request('DELETE', "silobags/$id");
         $data = json_decode($response->getBody(), true);
         return $data;
+    }
+
+
+    /**
+     * Get Silobag by Id.
+     *
+     * @return Response
+     */
+    public function get($id)
+    {
+        $response = $this->client->request('GET', "silobags/$id");
+        $data = json_decode($response->getBody(), true);
+        return Silobag::make($data)->resolve();
+    }
+
+    /**
+     * Get Devices for Given Silobag
+     *
+     * @return Response
+     */
+    public function devices($id)
+    {
+        $response = $this->client->request('GET', "silobags/$id/devices");
+        $data = json_decode($response->getBody(), true);
+        return SmartiumCollection::get(new Device($data));
     }
 }

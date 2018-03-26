@@ -899,6 +899,64 @@
     }
 })();
 
+
+(function(){
+    'use strict';
+
+    $(initDevices);
+
+    function initDevices() {
+
+        $('#formDevices').ajaxForm({
+            error: function() {
+                $('.modal-compose').modal('toggle');
+                $('#formDevices').find("input[type=text], textarea").val("");
+                
+                swal('Ooops!', 'Hubo un error. Ya quedó registrado en el Log!', 'error');
+            },
+            success: function(data) {
+                var silobag = $("#silobag option:selected").text();
+                $('.modal-compose').modal('toggle');
+                $('#formDevices').find("input[type=text], textarea").val("");
+
+                $('#datatable1').DataTable().row.add( [
+                    data.id,
+                    data.less_id,
+                    silobag,
+                    silobag,
+                    data.createdAt
+                ] ).draw( false );
+            }
+        });
+
+        $('.delete-device').on('click', function(e) {
+            var id = $(this).data('id');
+            e.preventDefault();
+            swal({
+                title: 'Estás seguro?',
+                text: 'Vas a borrar esta dispositivo y todos sus componentes asociados!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si, borrar!',
+                cancelButtonText: 'No, cancelar!',
+                closeOnConfirm: true,
+                closeOnCancel: true
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    $.ajax({url: 'spears/' + id, type: 'DELETE'});
+                    $('#datatable1').DataTable()
+                        .row('.row-' + id)
+                        .remove()
+                        .draw();
+                }
+            });
+
+        });
+    }
+})();
+
+
 (function() {
     'use strict';
 

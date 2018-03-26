@@ -14,6 +14,11 @@ class LandsRepository extends SmartiumRepository
     	parent::__construct();
     }
 
+    /**
+     * List Lands for given User
+     *
+     * @return Response
+     */
     public function list($id)
     {
         $response = $this->client->request('GET', "users/$id/lands");
@@ -21,6 +26,11 @@ class LandsRepository extends SmartiumRepository
         return SmartiumCollection::get(new Land($data));
     }
 
+    /**
+     * Create Land
+     *
+     * @return Response
+     */
     public function create(Request $request) 
     {
         $body = $request->getContent();
@@ -30,12 +40,22 @@ class LandsRepository extends SmartiumRepository
         return Land::make($data)->resolve();
     }
 
+    /**
+     * Delete Land for given Id
+     *
+     * @return Response
+     */
     public function delete($id) {
         $response = $this->client->request('DELETE', "lands/$id");
         $data = json_decode($response->getBody(), true);
         return $data;
     }
 
+    /**
+     * get Silobags for given Land
+     *
+     * @return Response
+     */
     public function silobags($idLand)
     {
         $response = $this->client->request('GET', "lands/$idLand/silobags");

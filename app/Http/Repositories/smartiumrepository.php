@@ -28,42 +28,4 @@ class SmartiumRepository
         $data = json_decode($response->getBody(), true);
         return User::make($data)->resolve();
     }
-
-    public function getSilobag($id)
-    {
-        $response = $this->client->request('GET', "silobags/$id");
-        $data = json_decode($response->getBody(), true);
-        return Silobag::make($data)->resolve();
-    }
-
-    public function getDevice($id)
-    {
-        $response = $this->client->request('GET', "devices/$id");
-        $data = json_decode($response->getBody(), true);
-        $device = Device::make($data)->resolve();
-        $device["metrics"] = $this->getDeviceMetrics($id);
-        $device["alerts"] = $this->getDeviceAlerts($id);
-        return $device;
-    }
-
-    public function getDevicesBySilobag($id)
-    {
-        $response = $this->client->request('GET', "silobags/$id/devices");
-        $data = json_decode($response->getBody(), true);
-        return SmartiumCollection::get(new Device($data));
-    }
-
-    public function getDeviceMetrics($id)
-    {
-        $response = $this->client->request('GET', "devices/$id/metrics");
-        $data = json_decode($response->getBody(), true);
-        return SmartiumCollection::get(new Metric($data));
-    }
-
-    public function getDeviceAlerts($id)
-    {
-        $response = $this->client->request('GET', "devices/$id/alerts");
-        $data = json_decode($response->getBody(), true);
-        return SmartiumCollection::get(new Alert($data));
-    }
 }

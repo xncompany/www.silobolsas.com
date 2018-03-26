@@ -17,30 +17,24 @@
                           <th>Silobolsa</th>
                           <th>Campo</th>
                           <th>Alta</th>
+                          <th>&nbsp;</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>2</td>
-                          <td>Lanza 67110023</td>
-                          <td>Silo 1</td>
-                          <td>El Paye</td>
-                          <td>May, 12th. 2017</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>Lanza 67112058</td>
-                          <td>Silo 2</td>
-                          <td>El Paye</td>
-                          <td>May, 12th. 2017</td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>Lanza 67112069</td>
-                          <td>Silo 3</td>
-                          <td>La Candelaria</td>
-                          <td>May, 13th. 2017</td>
-                        </tr>
+                      @foreach ($list as $land)
+                        @foreach ($land['silobags'] as $silobag)
+                          @foreach ($silobag['devices'] as $device)
+                            <tr class="row-{{ $device['id'] }}">
+                              <td>{{ $device['id'] }}</td>
+                              <td>{{ $device['idLess'] }}</td>
+                              <td>{{ $silobag['description'] }}</td>
+                              <td>{{ $land['description'] }}</td>
+                              <td>{{ $device['createdAt'] }}</td>
+                              <td><a data-id="{{ $device['id'] }}" class="btn ion-android-delete delete-device" href="#"></a></td>
+                            </tr>
+                          @endforeach
+                        @endforeach
+                      @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -62,23 +56,18 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-body">
-                        <form action="">
+                        <form class="form-ajax" action="/spears" method="POST" id="formDevices">
                             <div class="mda-form-group">
                                 <div class="mda-form-control">
-                                    <select class="form-control" name="account">
+                                    <select class="form-control" name="silobag">
                                       <option value="" disabled selected>...</option>
-                                      <optgroup label="El Paye">
-                                        <option value="volvo">Silobolsa 1</option>
-                                        <option value="saab">Silobolsa 2</option>
-                                      </optgroup>
-                                      <optgroup label="El Mosquito">
-                                        <option value="mercedes">Silobolsa 1</option>
-                                      </optgroup>
-                                      <optgroup label="La Candelaria">
-                                        <option value="mercedes">Silobolsa 1</option>
-                                        <option value="mercedes">Silobolsa 2</option>
-                                        <option value="mercedes">Silobolsa 3</option>
-                                      </optgroup>
+                                      @foreach ($lands as $land)
+                                        <optgroup label="{{ $land['description'] }}">
+                                          @foreach ($land['silobags'] as $silobag)
+                                            <option value="{{ $silobag['id'] }}">{{ $silobag['description'] }}</option>
+                                          @endforeach
+                                        </optgroup>
+                                      @endforeach
                                     </select>
                                     <div class="mda-form-control-line"></div>
                                     <label>Seleccionar Silobolsa:</label>
@@ -86,12 +75,25 @@
                             </div>
                             <div class="mda-form-group">
                                 <div class="mda-form-control">
-                                    <input class="form-control" rows="3" aria-multiline="true" tabindex="0" aria-invalid="false">
+                                    <input class="form-control" type="text" tabindex="0" name="less_id">
+                                    <input type="hidden" name="user" value="1">
+                                    <input type="hidden" name="active" value="1">
+                                    <input type="hidden" name="type" value="1">
                                     <div class="mda-form-control-line"></div>
                                     <label>Código de la Lanza:</label>
                                 </div>
                             </div>
-                            <button class="btn btn-success" type="button" data-dismiss="modal">Agregar Lanza</button>
+                            <div class="mda-form-group">
+                                <div class="mda-form-control">
+                                    <input class="form-control" type="text" tabindex="0" name="description">
+                                    <div class="mda-form-control-line"></div>
+                                    <label>Descripción</label>
+                                </div>
+                            </div>
+                            <button class="btn btn-success" type="button" id="modal-submit">
+                              <span id="buttonlabel">Agregar Lanza</span>
+                              <div class="loader-inner ball-pulse"></div>
+                            </button>
                         </form>
                       </div>
                     </div>

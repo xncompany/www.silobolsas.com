@@ -75,9 +75,9 @@
                                 </div>
                             </div>
                             <button class="btn btn-success" type="button" id="modal-submit">
-                            <span id="buttonlabel">Agregar Silobag</span>
-                            <div class="loader-inner ball-pulse"></div>
-                          </button>
+                              <span id="buttonlabel">Agregar Silobag</span>
+                              <div class="loader-inner ball-pulse"></div>
+                            </button>
                         </form>
                       </div>
                     </div>

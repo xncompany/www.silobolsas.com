@@ -48,17 +48,7 @@ class SilobagsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function getById($id) {
-        return (new SmartiumRepository)->getSilobag($id);
-    }
-
-    /**
-     * get Devices for given Silobag
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function getDevices($id) {
-        return (new SmartiumRepository)->getDevicesBySilobag($id);
+    public function get($id) {
+        return (new SilobagsRepository)->get($id);
     }
 }
