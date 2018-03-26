@@ -23,6 +23,25 @@ class SilobagsController extends Controller
     }
 
     /**
+     * Create Silobag.
+     *
+     * @return Response
+     */
+    public function create(Request $request) {
+        return (new SilobagsRepository)->create($request);
+    }
+
+    /**
+     * Delete given Land
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function delete($id) {
+        return (new SilobagsRepository)->delete($id);
+    }
+
+    /**
      * get Silobag by Id
      *
      * @param  int  $id

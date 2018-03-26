@@ -842,9 +842,62 @@
 
         });
     }
-
 })();
 
+(function(){
+    'use strict';
+
+    $(initSilobags);
+
+    function initSilobags() {
+
+        $('#formSilobags').ajaxForm({
+            error: function() {
+                $('.modal-compose').modal('toggle');
+                $('#formSilobags').find("input[type=text], textarea").val("");
+                
+                swal('Ooops!', 'Hubo un error. Ya quedó registrado en el Log!', 'error');
+            },
+            success: function(data) {
+                var land = $("#land option:selected").text();
+                $('.modal-compose').modal('toggle');
+                $('#formSilobags').find("input[type=text], textarea").val("");
+
+                $('#datatable1').DataTable().row.add( [
+                    data.id,
+                    data.description,
+                    land,
+                    data.createdAt
+                ] ).draw( false );
+            }
+        });
+
+        $('.delete-silobag').on('click', function(e) {
+            var id = $(this).data('id');
+            e.preventDefault();
+            swal({
+                title: 'Estás seguro?',
+                text: 'Vas a borrar esta silobolsa y todos sus componentes asociados!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si, borrar!',
+                cancelButtonText: 'No, cancelar!',
+                closeOnConfirm: true,
+                closeOnCancel: true
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    $.ajax({url: 'silobags/' + id, type: 'DELETE'});
+                    $('#datatable1').DataTable()
+                        .row('.row-' + id)
+                        .remove()
+                        .draw();
+                }
+            });
+
+        });
+    }
+})();
 
 (function() {
     'use strict';

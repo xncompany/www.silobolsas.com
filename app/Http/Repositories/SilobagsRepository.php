@@ -32,21 +32,14 @@ class SilobagsRepository extends SmartiumRepository
     {
         $body = $request->getContent();
         $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
-        $response = $this->client->request('POST', "lands", ["body" => $body, "headers" => $headers]);
+        $response = $this->client->request('POST', "silobags", ["body" => $body, "headers" => $headers]);
         $data = json_decode($response->getBody(), true);
         return Land::make($data)->resolve();
     }
 
     public function delete($id) {
-        $response = $this->client->request('DELETE', "lands/$id");
+        $response = $this->client->request('DELETE', "silobags/$id");
         $data = json_decode($response->getBody(), true);
         return $data;
-    }
-
-    public function silobags($idLand)
-    {
-        $response = $this->client->request('GET', "lands/$idLand/silobags");
-        $data = json_decode($response->getBody(), true);
-        return SmartiumCollection::get(new Silobag($data));
     }
 }

@@ -52,13 +52,13 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-body">
-                        <form action="">
+                        <form class="form-ajax" action="/silobags" method="POST" id="formSilobags">
                             <div class="mda-form-group">
                                 <div class="mda-form-control">
-                                    <select class="form-control" name="account">
+                                    <select class="form-control" name="land" id="land">
                                       <option value="" disabled selected>...</option>
                                       @foreach ($lands as $land)
-                                        <option>{{ $land['description'] }}</option>
+                                        <option value="{{ $land['id'] }}">{{ $land['description'] }}</option>
                                       @endforeach
                                     </select>
                                     <div class="mda-form-control-line"></div>
@@ -67,12 +67,17 @@
                             </div>
                             <div class="mda-form-group">
                                 <div class="mda-form-control">
-                                    <input class="form-control" rows="3" aria-multiline="true" tabindex="0" aria-invalid="false">
+                                    <input class="form-control" type="text" tabindex="0" name="description">
+                                    <input type="hidden" name="user" value="1">
+                                    <input type="hidden" name="active" value="1">
                                     <div class="mda-form-control-line"></div>
                                     <label>Nombre de la Silobolsa:</label>
                                 </div>
                             </div>
-                            <button class="btn btn-success" type="button" data-dismiss="modal">Agregar Silobolsa</button>
+                            <button class="btn btn-success" type="button" id="modal-submit">
+                            <span id="buttonlabel">Agregar Silobag</span>
+                            <div class="loader-inner ball-pulse"></div>
+                          </button>
                         </form>
                       </div>
                     </div>

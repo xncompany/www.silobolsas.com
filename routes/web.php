@@ -10,6 +10,8 @@ Route::delete('/lands/{id_land}', 'LandsController@delete');
 
 # Silobags
 Route::get('/silobags', 'SilobagsController@list');
+Route::post('/silobags', 'SilobagsController@create');
+Route::delete('/silobags/{id_silobag}', 'SilobagsController@delete');
 
 
 Route::get('/spears', function () {
