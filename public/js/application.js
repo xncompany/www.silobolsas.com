@@ -815,6 +815,8 @@
 
     function initLands() {
 
+        bindDeleteLand();
+
         $('#formLands').ajaxForm({
             error: function() {
                 $('.modal-compose').modal('toggle');
@@ -829,11 +831,18 @@
                 $('#datatable1').DataTable().row.add( [
                     data.id,
                     data.description,
-                    data.createdAt
+                    data.createdAt,
+                    '<a data-id="'+data.id+'" class="btn ion-android-delete delete-land" href="#"></a>'
                 ] ).draw( false );
+
+                $('#datatable1 tr:last').addClass('row-' + data.id);
+
+                bindDeleteLand();
             }
         });
+    }
 
+    function bindDeleteLand() {
         $('.delete-land').on('click', function(e) {
             var id = $(this).data('id');
             e.preventDefault();
@@ -868,6 +877,8 @@
 
     function initSilobags() {
 
+        bindDeleteSilobag();
+
         $('#formSilobags').ajaxForm({
             error: function() {
                 $('.modal-compose').modal('toggle');
@@ -884,11 +895,18 @@
                     data.id,
                     data.description,
                     land,
-                    data.createdAt
+                    data.createdAt,
+                    '<a data-id="'+data.id+'" class="btn ion-android-delete delete-silobag" href="#"></a>'
                 ] ).draw( false );
+
+                $('#datatable1 tr:last').addClass('row-' + data.id);
+
+                bindDeleteSilobag();
             }
         });
+    }
 
+    function bindDeleteSilobag() {
         $('.delete-silobag').on('click', function(e) {
             var id = $(this).data('id');
             e.preventDefault();
