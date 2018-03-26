@@ -3,22 +3,29 @@
 namespace App\Http\Repositories;
 
 use App\Http\Repositories\SmartiumRepository;
+use App\Http\Repositories\LandsRepository;
 use App\Http\Resources\SmartiumCollection;
 use App\Http\Resources\Land;
 use App\Http\Resources\Silobag;
 use Illuminate\Http\Request;
 
-class LandRepository extends SmartiumRepository 
+class SilobagsRepository extends SmartiumRepository 
 {
     public function __construct() {
     	parent::__construct();
     }
 
-    public function list($id)
+    public function list($idUser)
     {
-        $response = $this->client->request('GET', "users/$id/lands");
-        $data = json_decode($response->getBody(), true);
-        return SmartiumCollection::get(new Land($data));
+    	$list = array();
+        $lands = (new LandsRepository)->list($idUser);
+        foreach ($lands as $land) {
+        	$land['silobags'] = (new LandsRepository)->silobags($land['id']);
+        	if (!empty($land['silobags'])) {
+        		$list[] = $land;
+        	}
+        }
+        return $list;
     }
 
     public function create(Request $request) 

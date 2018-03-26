@@ -16,33 +16,21 @@
                           <th>Silobolsa</th>
                           <th>Campo</th>
                           <th>Alta</th>
+                          <th>&nbsp;</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>2</td>
-                          <td>Silo 1</td>
-                          <td>El Paye</td>
-                          <td>May, 12th. 2017</td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>Silo 2</td>
-                          <td>El Paye</td>
-                          <td>May, 12th. 2017</td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>Silo 3</td>
-                          <td>El Paye</td>
-                          <td>May, 13th. 2017</td>
-                        </tr>
-                        <tr>
-                          <td>12</td>
-                          <td>Silo 1</td>
-                          <td>La Candelaria</td>
-                          <td>July, 9th. 2017</td>
-                        </tr>
+                      @foreach ($lands as $land)
+                        @foreach ($land['silobags'] as $silobag)
+                          <tr class="row-{{ $silobag['id'] }}">
+                            <td>{{ $silobag['id'] }}</td>
+                            <td>{{ $silobag['description'] }}</td>
+                            <td>{{ $land['description'] }}</td>
+                            <td>{{ $silobag['createdAt'] }}</td>
+                            <td><a data-id="{{ $silobag['id'] }}" class="btn ion-android-delete delete-silobag" href="#"></a></td>
+                          </tr>
+                        @endforeach
+                      @endforeach
                       </tbody>
                     </table>
                   </div>
@@ -69,9 +57,9 @@
                                 <div class="mda-form-control">
                                     <select class="form-control" name="account">
                                       <option value="" disabled selected>...</option>
-                                      <option>El Paye</option>
-                                      <option>El Mosquito</option>
-                                      <option>La Calendaria</option>
+                                      @foreach ($lands as $land)
+                                        <option>{{ $land['description'] }}</option>
+                                      @endforeach
                                     </select>
                                     <div class="mda-form-control-line"></div>
                                     <label>Seleccionar Campo:</label>

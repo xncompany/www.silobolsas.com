@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\LandRepository;
+use App\Http\Repositories\LandsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 
@@ -17,7 +17,7 @@ class LandsController extends Controller
      */
     public function list() {
         $idUser = 1;
-        $lands = (new LandRepository)->list($idUser);
+        $lands = (new LandsRepository)->list($idUser);
         return view('lands')->with('lands', $lands);
     }
 
@@ -28,7 +28,7 @@ class LandsController extends Controller
      * @return Response
      */
     public function delete($id) {
-        return (new LandRepository)->delete($id);
+        return (new LandsRepository)->delete($id);
     }
 
 
@@ -39,7 +39,7 @@ class LandsController extends Controller
      * @return Response
      */
     public function silobags($id) {
-        return (new LandRepository)->silobags($id);
+        return (new LandsRepository)->silobags($id);
     }
 
     /**
@@ -48,6 +48,6 @@ class LandsController extends Controller
      * @return Response
      */
     public function create(Request $request) {
-        return (new LandRepository)->create($request);
+        return (new LandsRepository)->create($request);
     }
 }

@@ -2,15 +2,16 @@
 
 Route::get('/', 'HomeController@getIndex');
 
+# Lands
+
 Route::get('/lands', 'LandsController@list');
-
 Route::post('/lands', 'LandsController@create');
-
 Route::delete('/lands/{id_land}', 'LandsController@delete');
 
-Route::get('/silobags', function () {
-    return view('silobags');
-});
+# Silobags
+Route::get('/silobags', 'SilobagsController@list');
+
+
 Route::get('/spears', function () {
     return view('spears');
 });
