@@ -20,7 +20,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                      @foreach ($lands as $land)
+                      @foreach ($list as $land)
                         @foreach ($land['silobags'] as $silobag)
                           <tr class="row-{{ $silobag['id'] }}">
                             <td>{{ $silobag['id'] }}</td>

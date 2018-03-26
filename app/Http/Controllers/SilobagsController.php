@@ -18,8 +18,9 @@ class SilobagsController extends Controller
      */
     public function list() {
         $idUser = 1;
-        $lands = (new SilobagsRepository)->list($idUser);
-        return view('silobags')->with('lands', $lands);
+        $lands = (new LandsRepository)->list($idUser);
+        $list = (new SilobagsRepository)->list($idUser);
+        return view('silobags')->with('list', $list)->with('lands', $lands);
     }
 
     /**
