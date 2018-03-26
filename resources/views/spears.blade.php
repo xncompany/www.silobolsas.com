@@ -26,7 +26,7 @@
                           @foreach ($silobag['devices'] as $device)
                             <tr class="row-{{ $device['id'] }}">
                               <td>{{ $device['id'] }}</td>
-                              <td>{{ $device['idLess'] }}</td>
+                              <td><a href="/spears/{{ $device['id'] }}">{{ $device['idLess'] }}</a></td>
                               <td>{{ $silobag['description'] }}</td>
                               <td>{{ $land['description'] }}</td>
                               <td>{{ $device['createdAt'] }}</td>

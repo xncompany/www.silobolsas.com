@@ -50,6 +50,8 @@ class DevicesController extends Controller
      * @return Response
      */
     public function get($id) {
-        return (new DevicesRepository)->get($id);
+        
+        $device = (new DevicesRepository)->get($id);
+        return view('spears-detail')->with('device', $device);
     }
 }

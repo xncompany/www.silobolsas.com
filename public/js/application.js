@@ -765,6 +765,23 @@
                 }
             });
         }
+
+        if (document.getElementById('map-markers-2')) {
+
+            var mapMarkers = new GMaps({
+                div: '#map-markers-2',
+                lat: -34.932968,
+                lng: -60.125821,
+                zoom: 12
+            });
+            mapMarkers.addMarker({
+                lat: -34.933689,
+                lng: -60.143716,
+                infoWindow: {
+                    content: 'Lanza #67110023'
+                }
+            });
+        }
     }
 })();
 
@@ -899,7 +916,6 @@
     }
 })();
 
-
 (function(){
     'use strict';
 
@@ -955,7 +971,6 @@
         });
     }
 })();
-
 
 (function() {
     'use strict';
@@ -1207,6 +1222,73 @@
                 el.replaceWith($svg);
             })
         })
+
+    }
+})();
+
+(function() {
+    'use strict';
+
+    $(RadialCharts);
+
+    function RadialCharts() {
+
+        if (!$.fn.knob || !$.fn.easyPieChart) return;
+
+        // Easy Pie Charts
+
+        var pieOptions1 = {
+            animate: {
+                duration: 800,
+                enabled: true
+            },
+            barColor: Colors.byName('success'),
+            trackColor: 'rgba(162,162,162, .09)',
+            scaleColor: Colors.byName('gray-dark'),
+            lineWidth: 15,
+            lineCap: 'circle'
+        };
+
+        var pieOptions2 = {
+            animate: {
+                duration: 800,
+                enabled: true
+            },
+            barColor: Colors.byName('warning'),
+            trackColor: 'rgba(162,162,162, .09)',
+            scaleColor: Colors.byName('gray-dark'),
+            lineWidth: 15,
+            lineCap: 'circle'
+        };
+
+        var pieOptions3 = {
+            animate: {
+                duration: 800,
+                enabled: true
+            },
+            barColor: Colors.byName('success'),
+            trackColor: 'rgba(162,162,162, .09)',
+            scaleColor: Colors.byName('gray-dark'),
+            lineWidth: 15,
+            lineCap: 'circle'
+        };
+
+        var pieOptions4 = {
+            animate: {
+                duration: 800,
+                enabled: true
+            },
+            barColor: Colors.byName('danger'),
+            trackColor: 'rgba(162,162,162, .09)',
+            scaleColor: Colors.byName('gray-dark'),
+            lineWidth: 15,
+            lineCap: 'circle'
+        };
+
+        $('#easypiechart1').easyPieChart(pieOptions1);
+        $('#easypiechart2').easyPieChart(pieOptions2);
+        $('#easypiechart3').easyPieChart(pieOptions3);
+        $('#easypiechart4').easyPieChart(pieOptions4);
 
     }
 })();

@@ -17,6 +17,7 @@ Route::delete('/silobags/{id_silobag}', 'SilobagsController@delete');
 Route::get('/spears', 'DevicesController@list');
 Route::post('/spears', 'DevicesController@create');
 Route::delete('/spears/{id_device}', 'DevicesController@delete');
+Route::get('/spears/{id_device}', 'DevicesController@get');
 
 # User
 Route::get('/logout', function () {
