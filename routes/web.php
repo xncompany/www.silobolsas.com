@@ -19,6 +19,9 @@ Route::post('/spears', 'DevicesController@create');
 Route::delete('/spears/{id_device}', 'DevicesController@delete');
 Route::get('/spears/{id_device}', 'DevicesController@get');
 
+# Alerts
+Route::get('/alerts', 'AlertsController@list');
+
 # User
 Route::get('/logout', function () {
 	return redirect('/login');

@@ -15,7 +15,7 @@
                           <th class="sort-numeric">ID</th>
                           <th>Nombre</th>
                           <th>Alta</th>
-                          <th>&nbsp;</th>
+                          <th>Eliminar</th>
                         </tr>
                       </thead>
                       <tbody>

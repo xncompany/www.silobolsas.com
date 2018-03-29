@@ -51,6 +51,47 @@
                     </div>
                   </div>
                 </div>
+                <h4 class="page-header clearfix">Últimos 30 días de métricas</h4>
+                <div class="row">
+	            	<div class="card">
+	                  <div class="card-body">
+	                    <table class="table-datatable table table-striped table-hover mv-lg" id="datatable1">
+	                      <thead>
+	                        <tr>
+	                          <th class="sort-numeric">ID</th>
+	                          <th>Métrica</th>
+	                          <th>Valor</th>
+	                          <th>Estado</th>
+	                          <th>Fecha</th>
+	                        </tr>
+	                      </thead>
+	                      <tbody>
+	                      	<tr>
+	                      		<td>1</td>
+	                      		<td>Temperatura</td>
+	                      		<td>37ºC</td>
+	                      		<td>Normal</td>
+	                      		<td>2018-03-27 07:01:33</td>
+	                      	</tr>
+	                      	<tr>
+	                      		<td>2</td>
+	                      		<td>Humedad</td>
+	                      		<td>47%</td>
+	                      		<td>Normal</td>
+	                      		<td>2018-03-27 07:01:33</td>
+	                      	</tr>
+	                      	<tr>
+	                      		<td>3</td>
+	                      		<td>Humedad</td>
+	                      		<td>87%</td>
+	                      		<td><p class="text-danger">Problema</p></td>
+	                      		<td>2018-03-27 07:01:33</td>
+	                      	</tr>
+	                      </tbody>
+	                    </table>
+	                  </div>
+	                </div>
+                </div>
         	</div>
         </section>
 

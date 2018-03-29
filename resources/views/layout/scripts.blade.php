@@ -66,7 +66,7 @@
     <script src="/vendor/jquery.bootgrid/dist/jquery.bootgrid.js"></script>
     <script src="/vendor/jquery.bootgrid/dist/jquery.bootgrid.fa.js"></script>
     <!-- Datatables-->
-    <script src="/vendor/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
     <!-- Nestable-->
     <script src="/vendor/nestable/jquery.nestable.js"></script>
     <!-- Sweet Alert-->

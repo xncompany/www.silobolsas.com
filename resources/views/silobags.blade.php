@@ -16,7 +16,7 @@
                           <th>Silobolsa</th>
                           <th>Campo</th>
                           <th>Alta</th>
-                          <th>&nbsp;</th>
+                          <th>Eliminar</th>
                         </tr>
                       </thead>
                       <tbody>

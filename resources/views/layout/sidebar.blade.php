@@ -52,10 +52,19 @@
                     </a>
                   </li>
                   <li>
-                    <a class="ripple" href="/alarms">
+                    <a class="ripple" href="/alerts">
                       <span class="nav-icon">
-                        <img class="hidden" src="" data-svg-replace="/img/icons/alarm.svg" alt="MenuItem"></span>
-                      <span>Alarmas</span>
+                        <img class="hidden" src="" data-svg-replace="/img/icons/alarm.svg" alt="MenuItem">
+                      </span>
+                      <span>Alertas</span>
+                      <span class="pull-right nav-label"><span class="badge bg-danger">2</span></span>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="ripple" href="/users">
+                      <span class="nav-icon">
+                        <img class="hidden" src="" data-svg-replace="/img/icons/man-user.svg" alt="MenuItem"></span>
+                      <span>Usuarios</span>
                     </a>
                   </li>
                   <li>

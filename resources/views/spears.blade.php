@@ -17,7 +17,7 @@
                           <th>Silobolsa</th>
                           <th>Campo</th>
                           <th>Alta</th>
-                          <th>&nbsp;</th>
+                          <th>Eliminar</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -88,6 +88,20 @@
                                     <input class="form-control" type="text" tabindex="0" name="description">
                                     <div class="mda-form-control-line"></div>
                                     <label>Descripción</label>
+                                </div>
+                            </div>
+                            <div class="mda-form-group">
+                                <div class="mda-form-control">
+                                    <input class="form-control" type="text" tabindex="0" name="latitude">
+                                    <div class="mda-form-control-line"></div>
+                                    <label>Latitude</label>
+                                </div>
+                            </div>
+                            <div class="mda-form-group">
+                                <div class="mda-form-control">
+                                    <input class="form-control" type="text" tabindex="0" name="longitude">
+                                    <div class="mda-form-control-line"></div>
+                                    <label>Longitude</label>
                                 </div>
                             </div>
                             <button class="btn btn-success" type="button" id="modal-submit">

@@ -30,7 +30,7 @@
     <!-- Bootgrid-->
     <link rel="stylesheet" href="/vendor/jquery.bootgrid/dist/jquery.bootgrid.css">
     <!-- Datatables-->
-    <link rel="stylesheet" href="/vendor/datatables/media/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="/vendor/datatables/media/css/datatables.min.css"/>
     <!-- Sweet Alert-->
     <link rel="stylesheet" href="/vendor/sweetalert/dist/sweetalert.css">
     <!-- Loaders.CSS-->
