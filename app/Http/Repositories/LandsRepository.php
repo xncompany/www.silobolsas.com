@@ -21,7 +21,7 @@ class LandsRepository extends SmartiumRepository
      */
     public function list($id)
     {
-        $response = $this->client->request('GET', "users/$id/lands");
+        $response = $this->client->request('GET', "lands?user=$id");
         $data = json_decode($response->getBody(), true);
         return SmartiumCollection::get(new Land($data));
     }
