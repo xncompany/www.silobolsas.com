@@ -20,13 +20,7 @@ class Device extends JsonResource
             'idSilobag' => $this->resource['silobag'],
             'description' => $this->resource['description'],
             'isActive' => $this->resource['active'],
-            'createdAt' => $this->resource['created_at'],
-            'activatedAt' => $this->resource['activated_at'],
-            'type' => array(
-            	'id' => $this->resource['type']['id'],
-            	'description' => $this->resource['type']['description'],
-            	'name' => $this->resource['type']['name']
-            )
+            'createdAt' => $this->resource['created_at']
         ];
     }
 }
