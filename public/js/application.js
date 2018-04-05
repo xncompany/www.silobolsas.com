@@ -941,6 +941,8 @@
 
     function initDevices() {
 
+        bindDeleteDevice();
+
         $('#formDevices').ajaxForm({
             error: function() {
                 $('.modal-compose').modal('toggle');
@@ -949,19 +951,30 @@
                 swal('Ooops!', 'Hubo un error. Ya quedó registrado en el Log!', 'error');
             },
             success: function(data) {
+                
                 var silobag = $("#silobag option:selected").text();
+                var land = $("#silobag option:selected").closest('optgroup').prop('label');
+
                 $('.modal-compose').modal('toggle');
                 $('#formDevices').find("input[type=text], textarea").val("");
 
                 $('#datatable1').DataTable().row.add( [
                     data.id,
-                    data.less_id,
+                    '<a href="/spears/' + data.id + '">' + data.idLess + '</a>',
                     silobag,
-                    silobag,
-                    data.createdAt
+                    land,
+                    data.createdAt,
+                    '<a data-id="'+data.id+'" class="btn ion-android-delete delete-device" href="#"></a>'
                 ] ).draw( false );
+
+                $('#datatable1 tr:last').addClass('row-' + data.id);
+
+                bindDeleteDevice();
             }
         });
+    }
+
+    function bindDeleteDevice() {
 
         $('.delete-device').on('click', function(e) {
             var id = $(this).data('id');

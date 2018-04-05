@@ -59,7 +59,7 @@
                         <form class="form-ajax" action="/spears" method="POST" id="formDevices">
                             <div class="mda-form-group">
                                 <div class="mda-form-control">
-                                    <select class="form-control" name="silobag">
+                                    <select class="form-control" name="silobag" id="silobag">
                                       <option value="" disabled selected>...</option>
                                       @foreach ($lands as $land)
                                         <optgroup label="{{ $land['description'] }}">
