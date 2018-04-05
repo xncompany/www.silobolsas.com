@@ -54,6 +54,19 @@ class DevicesRepository extends SmartiumRepository
     public function create(Request $request) 
     {
         $body = $request->getContent();
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
+
+        $isValidLatitude = preg_match('/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/', $request->input('latitude'));
+        $isValidLongitude = preg_match('/^[-]?((((1[0-7][0-9])|([0-9]?[0-9]))\.(\d+))|180(\.0+)?)$/', $request->input('longitude'));
+
+        
+        if ($isValidLongitude && $isValidLongitude) {
+            $a['latitude'] = $latitude;
+            $a['longitude'] = $longitude;
+            $body .= "&attributes=" . json_encode($a);
+        }
+
         $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
         $response = $this->client->request('POST', "devices", ["body" => $body, "headers" => $headers]);
         $data = json_decode($response->getBody(), true);
