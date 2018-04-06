@@ -14,13 +14,70 @@ class Device extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $model = [
             'id' => $this->resource['id'],
             'idLess' => $this->resource['less_id'],
             'idSilobag' => $this->resource['silobag'],
             'description' => $this->resource['description'],
             'isActive' => $this->resource['active'],
-            'createdAt' => $this->resource['created_at']
+            'createdAt' => $this->resource['created_at'],
+            'metrics' => $this->resource['metrics']
         ];
+
+        if (isset($this->resource['attributes']))  {
+            $this->_coordinates($model);
+        }
+
+        if (isset($this->resource['metrics']) && count($this->resource['metrics']) > 0)  {
+            $this->_dashboard($model);
+        }
+
+        return $model;
+    }
+
+
+    /**
+     * Transform the attributes into coordinates if exists
+     *
+     */
+    private function _coordinates(&$model) 
+    {
+        $latitude = null;
+        $longitude = null;
+        foreach ($this->resource['attributes'] as $attribute) 
+        {
+            if ($attribute['id'] == 1) {
+                $latitude = $attribute['description'];
+            } elseif ($attribute['id'] == 2) {
+                $longitude = $attribute['description'];
+            }
+        }
+
+        if (!is_null($latitude) && !is_null($longitude)) {
+            $model['coordinates'] = array('latitude' => $latitude, 'longitude' => $longitude);
+        }
+    }
+
+    /**
+     * Get dashboard latest information
+     * Note: data from API already sorted by date DESC
+     *
+     */
+    private function _dashboard(&$model) 
+    {
+        $model['dashboard']['date'] = $this->resource['metrics'][0]['createdAt'];
+
+        $found = 0;
+        foreach ($this->resource['metrics'] as $metrics) 
+        {
+            if (isset($model['dashboard'][$metrics['type']])) {
+                continue;
+            }
+            $model['dashboard'][$metrics['type']]['amount'] = $metrics['intAmount'];
+            $model['dashboard'][$metrics['type']]['color'] = $metrics['color'];
+            $found++;
+        }
+
+        $model['dashboard']['status'] = ($found < 4);
     }
 }

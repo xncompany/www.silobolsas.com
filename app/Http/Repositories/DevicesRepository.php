@@ -94,9 +94,9 @@ class DevicesRepository extends SmartiumRepository
     {
         $response = $this->client->request('GET', "devices/$id");
         $data = json_decode($response->getBody(), true);
+        $data["metrics"] = $this->metrics($id);
+        $data["alerts"] = $this->alerts($id);
         $device = Device::make($data)->resolve();
-        $device["metrics"] = $this->metrics($id);
-        $device["alerts"] = $this->alerts($id);
         return $device;
     }
 

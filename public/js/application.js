@@ -1250,66 +1250,10 @@
 (function() {
     'use strict';
 
-    $(RadialCharts);
+    $(DeviceDetailView);
 
-    function RadialCharts() {
-
-        if (!$.fn.knob || !$.fn.easyPieChart) return;
-
-        // Easy Pie Charts
-
-        var pieOptions1 = {
-            animate: {
-                duration: 800,
-                enabled: true
-            },
-            barColor: Colors.byName('success'),
-            trackColor: 'rgba(162,162,162, .09)',
-            scaleColor: Colors.byName('gray-dark'),
-            lineWidth: 15,
-            lineCap: 'circle'
-        };
-
-        var pieOptions2 = {
-            animate: {
-                duration: 800,
-                enabled: true
-            },
-            barColor: Colors.byName('warning'),
-            trackColor: 'rgba(162,162,162, .09)',
-            scaleColor: Colors.byName('gray-dark'),
-            lineWidth: 15,
-            lineCap: 'circle'
-        };
-
-        var pieOptions3 = {
-            animate: {
-                duration: 800,
-                enabled: true
-            },
-            barColor: Colors.byName('success'),
-            trackColor: 'rgba(162,162,162, .09)',
-            scaleColor: Colors.byName('gray-dark'),
-            lineWidth: 15,
-            lineCap: 'circle'
-        };
-
-        var pieOptions4 = {
-            animate: {
-                duration: 800,
-                enabled: true
-            },
-            barColor: Colors.byName('danger'),
-            trackColor: 'rgba(162,162,162, .09)',
-            scaleColor: Colors.byName('gray-dark'),
-            lineWidth: 15,
-            lineCap: 'circle'
-        };
-
-        $('#easypiechart1').easyPieChart(pieOptions1);
-        $('#easypiechart2').easyPieChart(pieOptions2);
-        $('#easypiechart3').easyPieChart(pieOptions3);
-        $('#easypiechart4').easyPieChart(pieOptions4);
-
+    function DeviceDetailView() {
+        deviceChart();
+        deviceMap();
     }
 })();
