@@ -10,22 +10,60 @@ use Illuminate\Http\JsonResponse;
 class HomeController extends Controller
 {
 	/**
-     * get User by Id
+     * Show home/dashboard
      *
-     * @param  int  $id
      * @return Response
      */
-    public function getIndex() {
-        return view('home');
+    public function list() {
+        $idUser = 1;
+        $dashboard = (new SmartiumRepository)->dashboard($idUser);
+        $dashboard['map'] = $this->createMapData($dashboard['devices']);
+
+        return view('home')->with('dashboard', $dashboard);;
     }
 
     /**
-     * get Silobag by Id
-     *
-     * @param  int  $id
-     * @return Response
+     * Create Map Data considering only devices with coordinates
      */
-    public function getLands($id) {
-        return (new SmartiumRepository)->getLandsByUser($id);
+    private function createMapData($devices) 
+    {
+        $map = new \stdClass();
+
+        # default values
+        $map->markers = array();
+        $map->count = 0;
+        $map->title = "No hay lanzas";
+        $map->center = array('latitude' => '-34.603722', 'longitude' => '-58.381592');
+
+        # clean devices without coordinates
+        foreach ($devices as $device) 
+        {
+            $latitude = null;
+            $longitude = null;
+            foreach ($device['attributes'] as $attribute) 
+            {
+                if ($attribute['id'] == 1) {
+                    $latitude = $attribute['description'];
+                } elseif ($attribute['id'] == 2) {
+                    $longitude = $attribute['description'];
+                }
+            }
+
+            if (!is_null($latitude) && !is_null($longitude)) {
+                $map->markers[] = array('latitude' => $latitude, 
+                                        'longitude' => $longitude, 
+                                        'id' => $device['id'], 
+                                        'less_id' => $device['less_id']);
+            }
+        }
+
+        # update title, counter & map center
+        if (count($map->markers) > 0) {
+            $map->count = count($map->markers);
+            $map->title = $map->count . ($map->count == 1 ? ' Lanza' : ' Lanzas');
+            $map->center = $map->markers[0];
+        }
+
+        return $map;
     }
 }

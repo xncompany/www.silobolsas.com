@@ -28,7 +28,8 @@
                       <div class="card-body pv">
                         <div class="clearfix">
                           <div class="pull-left">
-                            <h4 class="m0 text-thin">3</h4><small class="m0 text-muted">Campos</small>
+                            <h4 class="m0 text-thin">{{ $dashboard['counters']['lands'] }}</h4>
+                            <small class="m0 text-muted">Campos</small>
                           </div>
                         </div>
                       </div>
@@ -39,7 +40,8 @@
                       <div class="card-body pv">
                         <div class="clearfix">
                           <div class="pull-left">
-                            <h4 class="m0 text-thin">14</h4><small class="m0 text-muted">Silobolsas</small>
+                            <h4 class="m0 text-thin">{{ $dashboard['counters']['silobags'] }}</h4>
+                            <small class="m0 text-muted">Silobolsas</small>
                           </div>
                         </div>
                       </div>
@@ -50,7 +52,8 @@
                       <div class="card-body pv">
                         <div class="clearfix">
                           <div class="pull-left">
-                            <h4 class="m0 text-thin">880</h4><small class="m0 text-muted">Lanzas</small>
+                            <h4 class="m0 text-thin">{{ $dashboard['counters']['devices'] }}</h4>
+                            <small class="m0 text-muted">Lanzas</small>
                           </div>
                         </div>
                       </div>
@@ -61,7 +64,8 @@
                       <div class="card-body pv">
                         <div class="clearfix">
                           <div class="pull-left">
-                            <h4 class="m0 text-thin">78,012</h4><small class="m0 text-muted">Mediciones</small>
+                            <h4 class="m0 text-thin">{{ $dashboard['counters']['metrics'] }}</h4>
+                            <small class="m0 text-muted">Mediciones</small>
                           </div>
                         </div>
                       </div>
@@ -77,10 +81,11 @@
                   <div class="col-lg-12">
                     <div class="card">
                       <div class="card-heading">
-                        <div class="card-title">Lanzas</div><small>Que reportaron métricas en las últimas 24hs</small>
+                        <div class="card-title">{{ $dashboard['map']->title }}</div>
+                        <small>con informaci&oacute;n de coordenadas</small>
                       </div>
                       <div class="card-body">
-                        <div class="gmap" id="map-markers-2"></div>
+                        <div class="gmap" id="map-markers"></div>
                       </div>
                     </div>
                   </div>
@@ -89,5 +94,29 @@
             </div>
           </div>
         </section>
+
+<script type="text/javascript">
+function googleMapsDevices() {
+
+    if (document.getElementById('map-markers')) {
+
+        var mapMarkers = new GMaps({
+            div: '#map-markers',
+            lat: {{ $dashboard['map']->center['latitude'] }},
+            lng: {{ $dashboard['map']->center['longitude'] }},
+            zoom: 12
+        });
+        @foreach ($dashboard['map']->markers as $pin)
+        mapMarkers.addMarker({
+              lat: {{ $pin['latitude'] }},
+              lng: {{ $pin['longitude'] }},
+            infoWindow: {
+                content: '<a href="spears/{{ $pin['id'] }}">Lanza #{{ $pin['less_id'] }}</a>'
+            }
+        });
+        @endforeach
+    }
+}
+</script>
 
 @endsection

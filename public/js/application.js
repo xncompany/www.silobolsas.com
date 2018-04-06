@@ -743,9 +743,13 @@
         }
 
         if (document.getElementById('map-markers')) {
+            $(googleMapsDevices);
+        }
+
+        if (document.getElementById('map-markers-alerts')) {
 
             var mapMarkers = new GMaps({
-                div: '#map-markers',
+                div: '#map-markers-alerts',
                 lat: -34.932968,
                 lng: -60.125821,
                 zoom: 12
@@ -754,34 +758,18 @@
                 lat: -34.933689,
                 lng: -60.143716,
                 infoWindow: {
-                    content: 'Silobolsa #002 - Campo El Paye'
+                    content: '<a href="/spears/1">Lanza #67110023</a>'
                 }
             });
             mapMarkers.addMarker({
-                lat: -34.953003,
-                lng: -60.155904,
+                lat: -34.925419,
+                lng: -60.120616,
                 infoWindow: {
-                    content: 'Silobolsa #001 - Campo El Paye'
+                    content: '<a href="/spears/2">Lanza #62572226</a>'
                 }
             });
         }
 
-        if (document.getElementById('map-markers-2')) {
-
-            var mapMarkers = new GMaps({
-                div: '#map-markers-2',
-                lat: -34.932968,
-                lng: -60.125821,
-                zoom: 12
-            });
-            mapMarkers.addMarker({
-                lat: -34.933689,
-                lng: -60.143716,
-                infoWindow: {
-                    content: 'Lanza #67110023'
-                }
-            });
-        }
     }
 })();
 

@@ -107,7 +107,7 @@
                         <div class="card-title">Lanzas</div><small>con problemas en las últimas 24hs.</small>
                       </div>
                       <div class="card-body">
-                        <div class="gmap" id="map-markers-2"></div>
+                        <div class="gmap" id="map-markers-alerts"></div>
                       </div>
                     </div>
                   </div>

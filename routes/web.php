@@ -1,6 +1,6 @@
 <?php
 
-Route::get('/', 'HomeController@getIndex');
+Route::get('/', 'HomeController@list');
 
 # Lands
 
