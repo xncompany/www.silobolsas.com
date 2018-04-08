@@ -1,28 +1,36 @@
 <?php
 
+# ======= Dashboard
+
 Route::get('/', 'HomeController@list');
 
-# Lands
+# ======= Lands
 
 Route::get('/lands', 'LandsController@list');
 Route::post('/lands', 'LandsController@create');
 Route::delete('/lands/{id_land}', 'LandsController@delete');
 
-# Silobags
+# ======= Silobags
+
 Route::get('/silobags', 'SilobagsController@list');
 Route::post('/silobags', 'SilobagsController@create');
 Route::delete('/silobags/{id_silobag}', 'SilobagsController@delete');
 
-# Devices
+# ======= Devices
+
 Route::get('/spears', 'DevicesController@list');
 Route::post('/spears', 'DevicesController@create');
 Route::delete('/spears/{id_device}', 'DevicesController@delete');
 Route::get('/spears/{id_device}', 'DevicesController@get');
 
-# Alerts
+# ======= Alerts
+
 Route::get('/alerts', 'AlertsController@list');
 
-# User
+# ======= User
+
+Route::get('/users', 'UsersController@users');
+
 Route::get('/logout', function () {
 	return redirect('/login');
 });

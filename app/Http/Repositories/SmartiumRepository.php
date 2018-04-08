@@ -23,18 +23,6 @@ class SmartiumRepository
     }
 
     /**
-     * Get User Info by id
-     *
-     * @return Response
-     */
-    public function getUserById($id)
-    {
-        $response = $this->client->request('GET', "users/$id");
-        $data = json_decode($response->getBody(), true);
-        return User::make($data)->resolve();
-    }
-
-    /**
      * Get dashboard information for given user
      *
      * @return Response
