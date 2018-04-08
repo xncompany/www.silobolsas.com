@@ -1252,8 +1252,11 @@
 
     $(DeviceDetailView);
 
-    function DeviceDetailView() {
-        deviceChart();
-        deviceMap();
+    function DeviceDetailView() 
+    {
+        if (typeof deviceChart != 'undefined') {
+            deviceChart();
+            deviceMap();
+        }
     }
 })();
