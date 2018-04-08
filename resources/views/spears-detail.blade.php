@@ -28,14 +28,26 @@
                 warning.barColor = Colors.byName('warning');
                 danger.barColor = Colors.byName('danger');
 
-                $('#easypiechart1').easyPieChart({{ $device['dashboard']['temperature']['color'] }});
-                $('#easypiechart2').easyPieChart({{ $device['dashboard']['humidity']['color'] }});
-                $('#easypiechart3').easyPieChart({{ $device['dashboard']['CO2']['color'] }});
-                $('#easypiechart4').easyPieChart({{ $device['dashboard']['battery_charge']['color'] }});
+                @if (isset($device['dashboard']['temperature']))
+                    $('#easypiechart1').easyPieChart({{ $device['dashboard']['temperature']['color'] }});
+                @endif
+
+                @if (isset($device['dashboard']['humidity']))
+                    $('#easypiechart2').easyPieChart({{ $device['dashboard']['humidity']['color'] }});
+                @endif
+
+                @if (isset($device['dashboard']['CO2']))
+                    $('#easypiechart3').easyPieChart({{ $device['dashboard']['CO2']['color'] }});
+                @endif
+
+                @if (isset($device['dashboard']['battery_charge']))
+                    $('#easypiechart4').easyPieChart({{ $device['dashboard']['battery_charge']['color'] }});
+                @endif
             }
 
             function deviceMap() 
             {
+                @if (isset($device['coordinates']['latitude']))
                 if (document.getElementById('map-markers-device')) {
 
                     var mapMarkers = new GMaps({
@@ -52,6 +64,7 @@
                         }
                     });
                 }
+                @endif
             }
         </script>
 
@@ -59,6 +72,8 @@
             <div class="container-fluid">
                 <h4 class="page-header clearfix">Métricas Actuales - {{ $device['dashboard']['date'] }}</h4>
                 <div class="row">
+
+                  @if (isset($device['dashboard']['temperature']))
                   <div class="col-lg-3 col-sm-6">
                     <div class="card">
                       <div class="card-heading">Temperatura</div>
@@ -69,6 +84,9 @@
                       </div>
                     </div>
                   </div>
+                  @endif
+
+                  @if (isset($device['dashboard']['humidity']))
                   <div class="col-lg-3 col-sm-6">
                     <div class="card">
                       <div class="card-heading">Humedad</div>
@@ -79,6 +97,9 @@
                       </div>
                     </div>
                   </div>
+                  @endif
+
+                  @if (isset($device['dashboard']['CO2']))
                   <div class="col-lg-3 col-sm-6">
                     <div class="card">
                       <div class="card-heading">CO2</div>
@@ -89,6 +110,9 @@
                       </div>
                     </div>
                   </div>
+                  @endif
+
+                  @if (isset($device['dashboard']['battery_charge']))
                   <div class="col-lg-3 col-sm-6">
                     <div class="card">
                       <div class="card-heading">Carga de Batería</div>
@@ -99,7 +123,11 @@
                       </div>
                     </div>
                   </div>
+                  @endif
+
                 </div>
+
+                @if (isset($device['coordinates']['latitude']))
                 <h4 class="page-header clearfix">Posición</h4>
                 <div class="row">
                   <div class="col-lg-12">
@@ -110,6 +138,8 @@
                     </div>
                   </div>
                 </div>
+                @endif
+
                 <h4 class="page-header clearfix">Últimos 30 días de métricas</h4>
                 <div class="row">
                     <div class="card">
@@ -125,27 +155,15 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Temperatura</td>
-                                <td>37ºC</td>
-                                <td>Normal</td>
-                                <td>2018-03-27 07:01:33</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Humedad</td>
-                                <td>47%</td>
-                                <td>Normal</td>
-                                <td>2018-03-27 07:01:33</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Humedad</td>
-                                <td>87%</td>
-                                <td><p class="text-danger">Problema</p></td>
-                                <td>2018-03-27 07:01:33</td>
-                            </tr>
+                            @foreach ($device['metrics'] as $metric)
+                                <tr>
+                                    <td>{{ $metric['id'] }}</td>
+                                    <td>{{ $metric['type'] }}</td>
+                                    <td>{{ $metric['value'] }}</td>
+                                    <td class="text-{{ $metric['color'] }}">{{ $metric['status'] }}</td>
+                                    <td>{{ $metric['createdAt'] }}</td>
+                                </tr>
+                            @endforeach
                           </tbody>
                         </table>
                       </div>

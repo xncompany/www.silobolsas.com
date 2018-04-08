@@ -20,8 +20,7 @@ class Device extends JsonResource
             'idSilobag' => $this->resource['silobag'],
             'description' => $this->resource['description'],
             'isActive' => $this->resource['active'],
-            'createdAt' => $this->resource['created_at'],
-            'metrics' => $this->resource['metrics']
+            'createdAt' => $this->resource['created_at']
         ];
 
         if (isset($this->resource['attributes']))  {
@@ -29,6 +28,7 @@ class Device extends JsonResource
         }
 
         if (isset($this->resource['metrics']) && count($this->resource['metrics']) > 0)  {
+            $model['metrics'] = $this->resource['metrics'];
             $this->_dashboard($model);
         }
 
