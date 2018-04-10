@@ -30,6 +30,7 @@ Route::get('/alerts', 'AlertsController@list');
 # ======= User
 
 Route::get('/users', 'UsersController@users');
+Route::post('/users', 'UsersController@create');
 
 Route::get('/logout', function () {
 	return redirect('/login');

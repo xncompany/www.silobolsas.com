@@ -52,21 +52,51 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-body">
-                        <form class="form-ajax" action="/lands" method="POST" id="formLands">
+                        <form class="form-ajax" action="/users" method="POST" id="formUsers">
+                          <input type="hidden" name="organization" value="1">
+                          <input type="hidden" name="active" value="1">
                           <div class="mda-form-group">
                             <div class="mda-form-control">
-                              <input class="form-control" type="text" tabindex="0" name="description">
-                              <input type="hidden" name="user" value="1">
-                              <input type="hidden" name="active" value="1">
+                              <input class="form-control" type="text" tabindex="0" name="fullname">
                               <div class="mda-form-control-line"></div>
-                              <label>Nombre del Campo:</label>
+                              <label>Nombre y Apellido:</label>
+                            </div>
+                          </div>
+                          <div class="mda-form-group">
+                            <div class="mda-form-control">
+                              <input class="form-control" type="text" tabindex="1" name="email">
+                              <div class="mda-form-control-line"></div>
+                              <label>Email:</label>
+                            </div>
+                          </div>
+                          <div class="mda-form-group">
+                            <div class="mda-form-control">
+                              <input class="form-control" type="password" tabindex="2" name="password1">
+                              <div class="mda-form-control-line"></div>
+                              <label>Password:</label>
+                            </div>
+                          </div>
+                          <div class="mda-form-group">
+                            <div class="mda-form-control">
+                              <input class="form-control" type="password" tabindex="3" name="password2">
+                              <div class="mda-form-control-line"></div>
+                              <label>Re-ingresar Password:</label>
+                            </div>
+                          </div>
+                          <div class="mda-form-group">
+                            <div class="mda-form-control">
+                              <select class="form-control" name="user_type" tabindex="4">
+                                <option value="1">Control total</option>
+                                <option value="2" selected>Solo lectura</option>
+                              </select>
+                              <div class="mda-form-control-line"></div>
+                              <label>Permisos:</label>
                             </div>
                           </div>
                           <button class="btn btn-success" type="button" id="modal-submit">
-                            <span id="buttonlabel">Agregar Campo</span>
+                            <span id="buttonlabel">Agregar Usuario</span>
                             <div class="loader-inner ball-pulse"></div>
                           </button>
-
                         </form>
                       </div>
                     </div>

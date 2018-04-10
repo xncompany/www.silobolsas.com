@@ -67,6 +67,7 @@
                       <span>Usuarios</span>
                     </a>
                   </li>
+                  <!--
                   <li>
                     <a class="ripple" href="/logout">
                       <span class="nav-icon">
@@ -74,6 +75,7 @@
                       <span>Logout</span>
                     </a>
                   </li>
+                  -->
                 </ul>
               </nav>
             </div>

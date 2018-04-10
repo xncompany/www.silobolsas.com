@@ -22,6 +22,15 @@ class UsersController extends Controller
     }
 
     /**
+     * Create a new User.
+     *
+     * @return Response
+     */
+    public function create(Request $request) {
+        return (new UsersRepository)->create($request);
+    }
+
+    /**
      * List Organizations.
      *
      * @return Response

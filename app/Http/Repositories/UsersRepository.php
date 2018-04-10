@@ -27,6 +27,28 @@ class UsersRepository extends SmartiumRepository
     }
 
     /**
+     * Create User
+     *
+     * @return Response
+     */
+    public function create(Request $request) 
+    {
+        # string for all arguments
+        $body = $request->getContent();
+        # attach md5 as password
+        $body .= "&password=" . md5($request->input("password1"));
+        # attach fullname as json attribute
+        $json['fullname'] = $request->input("fullname");
+        $body .= "&attributes=" . json_encode($json);
+
+        # go!
+        $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
+        $response = $this->client->request('POST', "users", ["body" => $body, "headers" => $headers]);
+        $data = json_decode($response->getBody(), true);
+        return User::make($data)->resolve();
+    }
+
+    /**
      * List Organizations
      *
      * @return Response

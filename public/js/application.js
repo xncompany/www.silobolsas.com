@@ -991,6 +991,72 @@
     }
 })();
 
+(function(){
+    'use strict';
+
+    $(initUsers);
+
+    function initUsers() {
+
+        bindDeleteUser();
+
+        $('#formUsers').ajaxForm({
+            error: function() {
+                $('.modal-compose').modal('toggle');
+                $('#formUsers').find("input[type=text], textarea").val("");
+                
+                swal('Ooops!', 'Hubo un error. Ya quedó registrado en el Log!', 'error');
+            },
+            success: function(data) {
+                
+                $('.modal-compose').modal('toggle');
+                $('#formUsers').find("input[type=text], textarea").val("");
+
+                $('#datatable1').DataTable().row.add( [
+                    data.id,
+                    data.fullname,
+                    data.email,
+                    data.email,
+                    data.createdAt,
+                    '<a data-id="' + data.id + '" class="btn ion-android-delete delete-user" href="#"></a>'
+                ] ).draw( false );
+
+                $('#datatable1 tr:last').addClass('row-' + data.id);
+
+                bindDeleteUser();
+            }
+        });
+    }
+
+    function bindDeleteUser() {
+
+        $('.delete-user').on('click', function(e) {
+            var id = $(this).data('id');
+            e.preventDefault();
+            swal({
+                title: 'Estás seguro?',
+                text: 'Vas a borrar este Usuario!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si, borrar!',
+                cancelButtonText: 'No, cancelar!',
+                closeOnConfirm: true,
+                closeOnCancel: true
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    $.ajax({url: 'users/' + id, type: 'DELETE'});
+                    $('#datatable1').DataTable()
+                        .row('.row-' + id)
+                        .remove()
+                        .draw();
+                }
+            });
+
+        });
+    }
+})();
+
 (function() {
     'use strict';
 
