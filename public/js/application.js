@@ -1003,20 +1003,51 @@
         $('#formUsers').ajaxForm({
             error: function() {
                 $('.modal-compose').modal('toggle');
-                $('#formUsers').find("input[type=text], textarea").val("");
+                $('#formUsers').find("input[type=text], textarea, password").val("");
                 
                 swal('Ooops!', 'Hubo un error. Ya quedó registrado en el Log!', 'error');
+            },
+            beforeSubmit: function(arr, $form, options) { 
+                var fullname = $('#fullname').fieldValue()[0];
+                var email = $('#email').fieldValue()[0];
+                var password1 = $('#password1').fieldValue()[0];
+                var password2 = $('#password2').fieldValue()[0];
+                
+                if (!fullname) {
+                    validationError('Ingrese el nombre y apellido!');
+                    return false;
+                }
+
+                if (!email) {
+                    validationError('Ingrese el email!');
+                    return false;
+                }
+
+                if (!isEmail(email)) {
+                    validationError('Ingrese un email válido!');
+                    return false;
+                }
+
+                if (!password1) {
+                    validationError('Ingrese la contraseña!');
+                    return false;
+                }
+
+                if (password1 != password2) {
+                    validationError('Las contraseñas no son iguales!');
+                    return false;
+                }
             },
             success: function(data) {
                 
                 $('.modal-compose').modal('toggle');
-                $('#formUsers').find("input[type=text], textarea").val("");
+                $('#formUsers').find("input[type=text], textarea, password").val("");
 
                 $('#datatable1').DataTable().row.add( [
                     data.id,
                     data.fullname,
                     data.email,
-                    data.email,
+                    data.type.description,
                     data.createdAt,
                     '<a data-id="' + data.id + '" class="btn ion-android-delete delete-user" href="#"></a>'
                 ] ).draw( false );
@@ -1026,6 +1057,18 @@
                 bindDeleteUser();
             }
         });
+    }
+
+    function isEmail(email) {
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return regex.test(email);
+    }
+
+    function validationError(msg) {
+        swal('Ooops!', msg, 'error');
+        $('.loader-inner').hide();
+        $('#buttonlabel').show();
+        $("#modal-submit").removeAttr("disabled");
     }
 
     function bindDeleteUser() {

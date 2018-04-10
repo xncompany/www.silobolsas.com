@@ -57,28 +57,28 @@
                           <input type="hidden" name="active" value="1">
                           <div class="mda-form-group">
                             <div class="mda-form-control">
-                              <input class="form-control" type="text" tabindex="0" name="fullname">
+                              <input class="form-control" type="text" tabindex="0" name="fullname" id="fullname">
                               <div class="mda-form-control-line"></div>
                               <label>Nombre y Apellido:</label>
                             </div>
                           </div>
                           <div class="mda-form-group">
                             <div class="mda-form-control">
-                              <input class="form-control" type="text" tabindex="1" name="email">
+                              <input class="form-control" type="text" tabindex="1" name="email" id="email">
                               <div class="mda-form-control-line"></div>
                               <label>Email:</label>
                             </div>
                           </div>
                           <div class="mda-form-group">
                             <div class="mda-form-control">
-                              <input class="form-control" type="password" tabindex="2" name="password1">
+                              <input class="form-control" type="password" tabindex="2" name="password1" id="password1">
                               <div class="mda-form-control-line"></div>
                               <label>Password:</label>
                             </div>
                           </div>
                           <div class="mda-form-group">
                             <div class="mda-form-control">
-                              <input class="form-control" type="password" tabindex="3" name="password2">
+                              <input class="form-control" type="password" tabindex="3" name="password2" id="password2">
                               <div class="mda-form-control-line"></div>
                               <label>Re-ingresar Password:</label>
                             </div>
