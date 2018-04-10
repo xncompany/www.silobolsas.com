@@ -1001,11 +1001,21 @@
         bindDeleteUser();
 
         $('#formUsers').ajaxForm({
-            error: function() {
+            error: function(data) {
+                var msg = 'Hubo un error. Ya quedó registrado en el Log!';
+                var errors = $.parseJSON(data.responseText);
+                if (errors.message.indexOf("response") >= 0) {
+                    var error = errors.message.substring(errors.message.indexOf("response"));
+                        error = error.replace("\n", "");
+                        error = error.replace("response:", "");
+                        if (errors.message.indexOf("{}") < 0) {
+                            msg = error;
+                        }
+                }
                 $('.modal-compose').modal('toggle');
-                $('#formUsers').find("input[type=text], textarea, password").val("");
+                $('#formUsers').find("input[type=text], textarea, input[type=password]").val("");
                 
-                swal('Ooops!', 'Hubo un error. Ya quedó registrado en el Log!', 'error');
+                swal('Ooops!', msg, 'error');
             },
             beforeSubmit: function(arr, $form, options) { 
                 var fullname = $('#fullname').fieldValue()[0];
@@ -1041,7 +1051,7 @@
             success: function(data) {
                 
                 $('.modal-compose').modal('toggle');
-                $('#formUsers').find("input[type=text], textarea, password").val("");
+                $('#formUsers').find("input[type=text], textarea, input[type=password]").val("");
 
                 $('#datatable1').DataTable().row.add( [
                     data.id,
