@@ -31,6 +31,15 @@ class UsersController extends Controller
     }
 
     /**
+     * Delete given User.
+     *
+     * @return Response
+     */
+    public function delete($id) {
+        return (new UsersRepository)->delete($id);
+    }
+
+    /**
      * List Organizations.
      *
      * @return Response

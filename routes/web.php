@@ -31,6 +31,7 @@ Route::get('/alerts', 'AlertsController@list');
 
 Route::get('/users', 'UsersController@users');
 Route::post('/users', 'UsersController@create');
+Route::delete('/users/{id_user}', 'UsersController@delete');
 
 Route::get('/logout', function () {
 	return redirect('/login');

@@ -49,6 +49,17 @@ class UsersRepository extends SmartiumRepository
     }
 
     /**
+     * Delete User by Id.
+     *
+     * @return Response
+     */
+    public function delete($id) {
+        $response = $this->client->request('DELETE', "users/$id");
+        $data = json_decode($response->getBody(), true);
+        return $data;
+    }
+
+    /**
      * List Organizations
      *
      * @return Response
