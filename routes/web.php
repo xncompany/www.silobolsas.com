@@ -4,6 +4,10 @@
 
 Route::get('/', 'HomeController@list');
 
+# ======= Configuration
+
+Route::get('/configurations', 'ConfigurationsController@list');
+
 # ======= Lands
 
 Route::get('/lands', 'LandsController@list');
