@@ -6,18 +6,14 @@
                 <em class="ion-close-round"></em>
               </div>
               <a class="sidebar-header-logo" href="#">
-                <img src="/img/logo.png" data-svg-replace="/img/logo.svg" alt="Logo">
-                  <span class="sidebar-header-logo-text">Smartium</span>
-                </a>
+                <img src="/img/logo.png" alt="Logo">
+              </a>
             </div>
 
             <div class="sidebar-content">
 
               <div class="sidebar-toolbar text-center">
-                <a href="">
-                  <img class="img-circle thumb64" src="/img/user/01.jpg" alt="Profile">
-                </a>
-                <div class="mt">Hola! Ariel Scaliter</div>
+                <div class="mt"><b>Ariel Scaliter</b><br>XN Company</div>
               </div>
 
               <nav class="sidebar-nav">
@@ -76,6 +72,17 @@
                     </a>
                   </li>
                   -->
+                  <li>
+                    <a class="ripple" href="#">
+                      <span class="nav-icon">
+                        <img class="hidden" src="" data-svg-replace="/img/icons/configuration.svg" alt="MenuItem"></span>
+                      <span>SmartiumTech</span>
+                    </a>
+                    <ul class="sidebar-subnav" id="layouts">
+                      <li><a class="ripple" href="/customers"><span class="pull-right nav-label"></span><span>Clientes</span><span class="md-ripple"></span></a></li>
+                      <li><a class="ripple" href="/configuration"><span class="pull-right nav-label"></span><span>Configuración</span><span class="md-ripple"></span></a></li>
+                    </ul>
+                  </li>
                 </ul>
               </nav>
             </div>

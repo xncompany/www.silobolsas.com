@@ -25,10 +25,6 @@
 
             @yield('content')
 
-            @section('footer')
-                <footer><span>2018 - Smartium app.</span></footer>
-            @show
-
           </main>
 
         </div>
