@@ -16,6 +16,12 @@ Route::get('/silobags', 'SilobagsController@list');
 Route::post('/silobags', 'SilobagsController@create');
 Route::delete('/silobags/{id_silobag}', 'SilobagsController@delete');
 
+# ======= Organizations
+
+Route::get('/organizations', 'OrganizationsController@list');
+Route::post('/organizations', 'OrganizationsController@create');
+Route::delete('/organizations/{id_organization}', 'OrganizationsController@delete');
+
 # ======= Devices
 
 Route::get('/spears', 'DevicesController@list');

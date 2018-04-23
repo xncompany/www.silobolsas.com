@@ -922,6 +922,122 @@
     }
 })();
 
+
+
+
+(function(){
+    'use strict';
+
+    $(initOrganizations);
+
+    function initOrganizations() {
+
+        bindDeleteOrganization();
+
+        $('#formOrganizations').ajaxForm({
+            error: function() {
+                $('.modal-compose').modal('toggle');
+                $('#formOrganizations').find("input[type=text], input[type=password], textarea").val("");
+                
+                swal('Ooops!', 'Hubo un error. Ya quedó registrado en el Log!', 'error');
+            },
+            beforeSubmit: function(arr, $form, options) { 
+                var organization = $('#organization').fieldValue()[0];
+                var fullname = $('#fullname').fieldValue()[0];
+                var email = $('#email').fieldValue()[0];
+                var password1 = $('#password1').fieldValue()[0];
+                var password2 = $('#password2').fieldValue()[0];
+                
+                if (!organization) {
+                    validationError('Ingrese el nombre de la organización!');
+                    return false;
+                }
+
+                if (!fullname) {
+                    validationError('Ingrese el nombre y apellido del responsable!');
+                    return false;
+                }
+
+                if (!email) {
+                    validationError('Ingrese el email!');
+                    return false;
+                }
+
+                if (!isEmail(email)) {
+                    validationError('Ingrese un email válido!');
+                    return false;
+                }
+
+                if (!password1) {
+                    validationError('Ingrese la contraseña!');
+                    return false;
+                }
+
+                if (password1 != password2) {
+                    validationError('Las contraseñas no son iguales!');
+                    return false;
+                }
+            },
+            success: function(data) {
+
+                $('.modal-compose').modal('toggle');
+                $('#formSilobags').find("input[type=text], input[type=password], textarea").val("");
+
+                $('#datatable1').DataTable().row.add( [
+                    data.id,
+                    data.description,
+                    data.createdAt,
+                    '<a data-id="'+data.id+'" class="btn ion-android-delete delete-organization" href="#"></a>'
+                ] ).draw( false );
+
+                $('#datatable1 tr:last').addClass('row-' + data.id);
+
+                bindDeleteOrganization();
+            }
+        });
+
+        function isEmail(email) {
+          var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+          return regex.test(email);
+        }
+
+        function validationError(msg) {
+            swal('Ooops!', msg, 'error');
+            $('.loader-inner').hide();
+            $('#buttonlabel').show();
+            $("#modal-submit").removeAttr("disabled");
+        }
+    }
+
+    function bindDeleteOrganization() {
+        $('.delete-organization').on('click', function(e) {
+            var id = $(this).data('id');
+            e.preventDefault();
+            swal({
+                title: 'Estás seguro?',
+                text: 'Vas a borrar esta empresa y todos sus componentes asociados!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Si, borrar!',
+                cancelButtonText: 'No, cancelar!',
+                closeOnConfirm: true,
+                closeOnCancel: true
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    $.ajax({url: 'organizations/' + id, type: 'DELETE'});
+                    $('#datatable1').DataTable()
+                        .row('.row-' + id)
+                        .remove()
+                        .draw();
+                }
+            });
+
+        });
+    }
+})();
+
+
 (function(){
     'use strict';
 

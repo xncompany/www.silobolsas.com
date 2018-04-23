@@ -79,7 +79,7 @@
                       <span>SmartiumTech</span>
                     </a>
                     <ul class="sidebar-subnav" id="layouts">
-                      <li><a class="ripple" href="/customers"><span class="pull-right nav-label"></span><span>Clientes</span><span class="md-ripple"></span></a></li>
+                      <li><a class="ripple" href="/organizations"><span class="pull-right nav-label"></span><span>Clientes</span><span class="md-ripple"></span></a></li>
                       <li><a class="ripple" href="/configuration"><span class="pull-right nav-label"></span><span>Configuración</span><span class="md-ripple"></span></a></li>
                     </ul>
                   </li>
