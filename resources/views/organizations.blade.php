@@ -22,7 +22,7 @@
                       @foreach ($list as $organization)
 	                      <tr class="row-{{ $organization['id'] }}">
 	                        <td>{{ $organization['id'] }}</td>
-	                        <td>{{ $organization['description'] }}</td>
+	                        <td><a href="organizations/{{ $organization['id'] }}">{{ $organization['description'] }}</a></td>
 	                        <td>{{ $organization['createdAt'] }}</td>
                           @if ($organization['id'] == 1)
                             <td>&nbsp;</td>

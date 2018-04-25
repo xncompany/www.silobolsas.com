@@ -24,6 +24,7 @@ Route::delete('/silobags/{id_silobag}', 'SilobagsController@delete');
 # ======= Organizations
 
 Route::get('/organizations', 'OrganizationsController@list');
+Route::get('/organizations/{id_organization}', 'OrganizationsController@get');
 Route::post('/organizations', 'OrganizationsController@create');
 Route::delete('/organizations/{id_organization}', 'OrganizationsController@delete');
 

@@ -846,7 +846,7 @@
                 closeOnCancel: true
             }, function(isConfirm) {
                 if (isConfirm) {
-                    $.ajax({url: 'lands/' + id, type: 'DELETE'});
+                    $.ajax({url: '/lands/' + id, type: 'DELETE'});
                     $('#datatable1').DataTable()
                         .row('.row-' + id)
                         .remove()
@@ -910,7 +910,7 @@
                 closeOnCancel: true
             }, function(isConfirm) {
                 if (isConfirm) {
-                    $.ajax({url: 'silobags/' + id, type: 'DELETE'});
+                    $.ajax({url: '/silobags/' + id, type: 'DELETE'});
                     $('#datatable1').DataTable()
                         .row('.row-' + id)
                         .remove()
@@ -1025,7 +1025,7 @@
                 closeOnCancel: true
             }, function(isConfirm) {
                 if (isConfirm) {
-                    $.ajax({url: 'organizations/' + id, type: 'DELETE'});
+                    $.ajax({url: '/organizations/' + id, type: 'DELETE'});
                     $('#datatable1').DataTable()
                         .row('.row-' + id)
                         .remove()
@@ -1095,7 +1095,7 @@
                 closeOnCancel: true
             }, function(isConfirm) {
                 if (isConfirm) {
-                    $.ajax({url: 'spears/' + id, type: 'DELETE'});
+                    $.ajax({url: '/spears/' + id, type: 'DELETE'});
                     $('#datatable1').DataTable()
                         .row('.row-' + id)
                         .remove()
@@ -1214,7 +1214,7 @@
                 closeOnCancel: true
             }, function(isConfirm) {
                 if (isConfirm) {
-                    $.ajax({url: 'users/' + id, type: 'DELETE'});
+                    $.ajax({url: '/users/' + id, type: 'DELETE'});
                     $('#datatable1').DataTable()
                         .row('.row-' + id)
                         .remove()
