@@ -7,6 +7,7 @@ Route::get('/', 'HomeController@list');
 # ======= Configuration
 
 Route::get('/configurations', 'ConfigurationsController@list');
+Route::post('/configurations', 'ConfigurationsController@update');
 
 # ======= Lands
 

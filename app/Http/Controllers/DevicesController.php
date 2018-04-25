@@ -14,7 +14,6 @@ class DevicesController extends Controller
     /**
      * get Devices for given User
      *
-     * @param  int  $id
      * @return Response
      */
     public function list() {
