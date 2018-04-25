@@ -51,6 +51,11 @@ class DevicesController extends Controller
     public function get($id) {
         
         $device = (new DevicesRepository)->get($id);
+
+        if (!isset($device['dashboard'])) {
+            return view('spears-empty')->with('device', $device);
+        }
+
         return view('spears-detail')->with('device', $device);
     }
 }

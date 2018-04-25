@@ -1,6 +1,6 @@
 @extends('layout/app')
 
-@section('title', 'Lanza #67110023')
+@section('title', 'Lanza #' . $device['idLess'])
 
 @section('content')
 
