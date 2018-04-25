@@ -24,7 +24,13 @@
 	                        <td>{{ $organization['id'] }}</td>
 	                        <td>{{ $organization['description'] }}</td>
 	                        <td>{{ $organization['createdAt'] }}</td>
-	                        <td><a data-id="{{ $organization['id'] }}" class="btn ion-android-delete delete-organization" href="#"></a></td>
+                          @if ($organization['id'] == 1)
+                            <td>&nbsp;</td>
+                          @else
+                              <td>
+                                <a data-id="{{ $organization['id'] }}" class="btn ion-android-delete delete-organization" href="#"></a>
+                              </td>
+                          @endif
 	                      </tr>
                       @endforeach
                       </tbody>

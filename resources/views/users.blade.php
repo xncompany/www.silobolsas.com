@@ -28,7 +28,13 @@
                           <td>{{ $user['email'] }}</td>
                           <td>{{ $user['type']['description'] }}</td>
                           <td>{{ $user['createdAt'] }}</td>
-                          <td><a data-id="{{ $user['id'] }}" class="btn ion-android-delete delete-user" href="#"></a></td>
+                          @if ($user['id'] == 1)
+                            <td>&nbsp;</td>
+                          @else
+                            <td>
+                              <a data-id="{{ $user['id'] }}" class="btn ion-android-delete delete-user" href="#"></a>
+                            </td>
+                          @endif
                         </tr>
                       @endforeach
                       </tbody>
