@@ -13,11 +13,11 @@
         <div class="layout-container">
 
             @section('topbar')
-                @include('layout/topbar')
+                @include('layout/topbar', ['admin' => isset($admin)])
             @show
 
             @section('sidebar')
-                @include('layout/sidebar')
+                @include('layout/sidebar', ['admin' => isset($admin)])
             @show
           
           <!-- Main section-->

@@ -1,5 +1,10 @@
           <!-- sidebar-->
-          <aside class="sidebar-container">
+          @if ($admin)
+            <aside class="sidebar-container admin">
+          @else
+            <aside class="sidebar-container">
+          @endif
+          
 
             <div class="sidebar-header">
               <div class="pull-right pt-lg text-muted hidden">
@@ -74,7 +79,7 @@
                   -->
                   <li>
                     <a class="ripple" href="#">
-                      <span class="nav-icon">
+                      <span class="nav-icon admin">
                         <img class="hidden" src="" data-svg-replace="/img/icons/configuration.svg" alt="MenuItem"></span>
                       <span>SmartiumTech</span>
                     </a>

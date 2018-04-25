@@ -3247,10 +3247,21 @@ fieldset[disabled] .btn-inverse.active {
   background-color: #006633;
   color: #fff;
 }
+
+.theme-1 .layout-container > aside.admin > .sidebar-header {
+  background-color: #0000CC;
+  color: #fff;
+}
+
 .theme-1 .layout-container > header {
   background-color: #006633;
   color: #fff;
 }
+
+.theme-1 .layout-container > header.admin {
+  background-color: #0000CC;
+}
+
 .theme-2 .layout-container > aside {
   background-color: #263238;
   color: #fff;
@@ -3416,6 +3427,7 @@ fieldset[disabled] .theme-3 .layout-container > main .btn-default.active {
   color: #448AFF !important;
   fill: #4CAF50 !important;
 }
+
 .theme-4 .layout-container > aside {
   background-color: #263238;
   color: #fff;
@@ -6891,6 +6903,13 @@ body:last-child .blueimp-gallery > .play-pause {
   line-height: 1;
   color: #009933;
   fill: #009933;
+}
+
+.sidebar-nav ul > li > a > .admin > em,
+.sidebar-nav ul > li > a > .admin > img,
+.sidebar-nav ul > li > a > .admin > svg {
+  color: #0000CC;
+  fill: #0000CC;
 }
 .sidebar-nav ul > li > a > .nav-label,
 .sidebar-nav ul > li > a > .nav-caret {

@@ -1,6 +1,6 @@
 				<form class="form-horizontal" method="post" action="/configurations">
 					<div class="card">
-                      <div class="card-heading bg-green-800">
+                      <div class="card-heading bg-blue-900">
                         <div class="card-title">{{ $title }}</div>
                       </div>
                       <div class="card-body pv">

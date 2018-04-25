@@ -1,5 +1,9 @@
             <!-- top navbar-->
+            @if ($admin)
+            <header class="header-container admin">
+            @else
             <header class="header-container">
+            @endif
                 <nav>
                   <ul class="visible-xs visible-sm">
                     <li>

@@ -1,4 +1,4 @@
-@extends('layout/app')
+@extends('layout/app', ['admin' => true])
 
 @section('title', 'Clientes')
 
