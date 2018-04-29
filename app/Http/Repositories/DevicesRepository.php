@@ -67,6 +67,9 @@ class DevicesRepository extends SmartiumRepository
             $body .= "&attributes=" . json_encode($a);
         }
 
+        $body .= "&user=" . session('user')['id'];
+        $body .= "&organization=" . session('user')['organization']['id'];
+
         $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
         $response = $this->client->request('POST', "devices", ["body" => $body, "headers" => $headers]);
         $data = json_decode($response->getBody(), true);

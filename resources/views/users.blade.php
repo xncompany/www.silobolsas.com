@@ -59,7 +59,6 @@
                     <div class="modal-content">
                       <div class="modal-body">
                         <form class="form-ajax" action="/users" method="POST" id="formUsers">
-                          <input type="hidden" name="organization" value="1">
                           <input type="hidden" name="active" value="1">
                           <div class="mda-form-group">
                             <div class="mda-form-control">

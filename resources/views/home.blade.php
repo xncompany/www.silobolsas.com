@@ -15,7 +15,7 @@
                         <h4 class="m0 text-thin">2</h4><small class="m0 text-muted">alertas en las últimas 24hs</small>
                       </div>
                       <div class="pull-right">
-                        <a href="/alerts"><button class="btn btn-flat btn-primary text-white" type="button">Ver Alertas</button></a>
+                        <a href="/alerts"><button class="btn text-black" type="button">Ver Alertas</button></a>
                       </div>
                     </div>
                   </div>

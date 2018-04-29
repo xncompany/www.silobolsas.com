@@ -70,6 +70,9 @@ class UsersRepository extends SmartiumRepository
         $json['fullname'] = $request->input("fullname");
         $body .= "&attributes=" . json_encode($json);
 
+        $body .= "&user=" . session('user')['id'];
+        $body .= "&organization=" . session('user')['organization']['id'];
+
         # go!
         $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
         $response = $this->client->request('POST', "users", ["body" => $body, "headers" => $headers]);

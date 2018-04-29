@@ -52,7 +52,6 @@
                           <div class="mda-form-group">
                             <div class="mda-form-control">
                               <input class="form-control" type="text" tabindex="0" name="description">
-                              <input type="hidden" name="user" value="1">
                               <input type="hidden" name="active" value="1">
                               <div class="mda-form-control-line"></div>
                               <label>Nombre del Campo:</label>

@@ -34,6 +34,8 @@ class LandsRepository extends SmartiumRepository
     public function create(Request $request) 
     {
         $body = $request->getContent();
+        $body .= "&user=" . session('user')['id'];
+        $body .= "&organization=" . session('user')['organization']['id'];
         $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
         $response = $this->client->request('POST', "lands", ["body" => $body, "headers" => $headers]);
         $data = json_decode($response->getBody(), true);
