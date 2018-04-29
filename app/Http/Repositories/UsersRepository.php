@@ -37,6 +37,7 @@ class UsersRepository extends SmartiumRepository
         $data = json_decode($response->getBody(), true);
         $user = User::make($data)->resolve();
 
+        $user['admin'] = ($user['type']['id'] == 1);
         session(['user' => $user]);
         Auth::loginUsingId($user['id']);
         return true;

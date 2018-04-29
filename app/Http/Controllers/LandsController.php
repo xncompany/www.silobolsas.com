@@ -18,7 +18,8 @@ class LandsController extends Controller
     public function list() {
         $idUser = session('user')['id'];
         $lands = (new LandsRepository)->list($idUser);
-        return view('lands')->with('lands', $lands);
+        return view('lands')
+                ->with('lands', $lands);
     }
 
     /**

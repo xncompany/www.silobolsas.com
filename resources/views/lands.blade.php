@@ -32,6 +32,8 @@
                   </div>
                 </div>
 
+            @if (session('user')['admin'])
+
                 <div class="floatbutton">
                   <ul class="mfb-component--br mfb-zoomin">
                     <li class="mfb-component__wrap">
@@ -67,6 +69,8 @@
                     </div>
                   </div>
                 </div>
+
+            @endif
 
             </div>
         </section>

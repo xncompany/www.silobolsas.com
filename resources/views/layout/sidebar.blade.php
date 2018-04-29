@@ -61,6 +61,7 @@
                       <span class="pull-right nav-label"><span class="badge bg-danger">2</span></span>
                     </a>
                   </li>
+                  @if (session('user')['admin'])
                   <li>
                     <a class="ripple" href="/users">
                       <span class="nav-icon">
@@ -68,6 +69,7 @@
                       <span>Usuarios</span>
                     </a>
                   </li>
+                  @endif
                   <li>
                     <a class="ripple" href="/logout">
                       <span class="nav-icon">

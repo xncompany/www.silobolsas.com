@@ -20,7 +20,9 @@ class DevicesController extends Controller
         $idUser = session('user')['id'];
         $list = (new DevicesRepository)->list($idUser);
         $lands = (new SilobagsRepository)->list($idUser);
-        return view('spears')->with('list', $list)->with('lands', $lands);
+        return view('spears')
+                ->with('list', $list)
+                ->with('lands', $lands);
     }
 
     /**
