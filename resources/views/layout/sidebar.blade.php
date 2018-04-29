@@ -18,7 +18,7 @@
             <div class="sidebar-content">
 
               <div class="sidebar-toolbar text-center">
-                <div class="mt"><b>Ariel Scaliter</b><br>XN Company</div>
+                <div class="mt"><b>{{ session('user')['fullname'] }}</b><br>{{ session('user')['organization']['description'] }}</div>
               </div>
 
               <nav class="sidebar-nav">
@@ -68,7 +68,6 @@
                       <span>Usuarios</span>
                     </a>
                   </li>
-                  <!--
                   <li>
                     <a class="ripple" href="/logout">
                       <span class="nav-icon">
@@ -76,7 +75,6 @@
                       <span>Logout</span>
                     </a>
                   </li>
-                  -->
                   <li>
                     <a class="ripple" href="#">
                       <span class="nav-icon admin">

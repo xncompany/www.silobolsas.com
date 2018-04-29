@@ -15,7 +15,7 @@ class HomeController extends Controller
      * @return Response
      */
     public function list() {
-        $idUser = 1;
+        $idUser = session('user')['id'];
         $dashboard = (new SmartiumRepository)->dashboard($idUser);
         $dashboard['map'] = $this->createMapData($dashboard['devices']);
 

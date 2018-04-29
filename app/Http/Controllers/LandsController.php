@@ -16,7 +16,7 @@ class LandsController extends Controller
      * @return Response
      */
     public function list() {
-        $idUser = 1;
+        $idUser = session('user')['id'];
         $lands = (new LandsRepository)->list($idUser);
         return view('lands')->with('lands', $lands);
     }

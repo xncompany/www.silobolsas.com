@@ -12,11 +12,14 @@
     <body class="theme-1">
         <div class="layout-container">
 
-            <header class="header-container m0">
-                <nav>
-                  <h2 class="header-title">Smartium</h2>
-                </nav>
-            </header>
+            <div class="sidebar-header">
+              <div class="pull-right pt-lg text-muted hidden">
+                <em class="ion-close-round"></em>
+              </div>
+              <a class="sidebar-header-logo" href="#">
+                <img src="/img/logo.png" alt="Logo">
+              </a>
+            </div>
           
           <!-- Main section-->
           <main class="main-container m0">

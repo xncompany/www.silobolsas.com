@@ -7,12 +7,41 @@ use App\Http\Resources\SmartiumCollection;
 use App\Http\Resources\User;
 use App\Http\Resources\Organization;
 use Illuminate\Http\Request;
+use GuzzleHttp\Exception\RequestException;
+use Illuminate\Support\Facades\Auth;
+use Session;
 
 class UsersRepository extends SmartiumRepository 
 {
     public function __construct() {
     	parent::__construct();
     }
+
+
+    /**
+     * Login a User
+     *
+     * @return Response
+     */
+    public function login(Request $request)
+    {
+        $body = $request->getContent();
+        $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
+
+        try {
+            $response = $this->client->request('POST', "login", ["body" => $body, "headers" => $headers]);
+        } catch(RequestException $e) {
+            return false;
+        }
+
+        $data = json_decode($response->getBody(), true);
+        $user = User::make($data)->resolve();
+
+        session(['user' => $user]);
+        Auth::loginUsingId($user['id']);
+        return true;
+    }
+
 
     /**
      * User for given id

@@ -6,9 +6,35 @@ use App\Http\Controllers\Controller;
 use App\Http\Repositories\UsersRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Session;
 
 class UsersController extends Controller
 {
+
+
+    /**
+     * Login a user
+     *
+     * @return Response
+     */
+    public function login(Request $request) {
+        $user = (new UsersRepository)->login($request);
+        if ($user == false) {
+            return view('login')->with('fail', true);
+        }
+        return redirect()->route('home');;
+    }
+
+    /**
+     * Logout a user
+     *
+     * @return Response
+     */
+    public function logout(Request $request) {
+        Session::flush();
+        return redirect()->route('login');
+    }
+
 
     /**
      * get User by Id
@@ -17,7 +43,7 @@ class UsersController extends Controller
      * @return Response
      */
     public function get() {
-        $idUser = 1;
+        $idUser = session('user')['id'];
         return (new UsersRepository)->get($idUser);
     }
 
@@ -54,7 +80,7 @@ class UsersController extends Controller
      * @return Response
      */
     public function users() {
-        $idOrganization = 1;
+        $idOrganization = session('user')['organization']['id'];
         $users = (new UsersRepository)->usersByOrganization($idOrganization);
         return view('users')->with('users', $users);
     }
