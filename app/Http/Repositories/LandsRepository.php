@@ -15,13 +15,13 @@ class LandsRepository extends SmartiumRepository
     }
 
     /**
-     * List Lands for given User
+     * List Lands for given Organization
      *
      * @return Response
      */
     public function list($id)
     {
-        $response = $this->client->request('GET', "lands?user=$id");
+        $response = $this->client->request('GET', "lands?organization=$id");
         $data = json_decode($response->getBody(), true);
         return SmartiumCollection::get(new Land($data));
     }

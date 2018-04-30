@@ -17,14 +17,14 @@ class SilobagsRepository extends SmartiumRepository
     }
 
     /**
-     * List Silobag for given User
+     * List Silobag for given Organization
      *
      * @return Response
      */
-    public function list($idUser)
+    public function list($idOrganization)
     {
     	$list = array();
-        $lands = (new LandsRepository)->list($idUser);
+        $lands = (new LandsRepository)->list($idOrganization);
         foreach ($lands as $land) {
         	$land['silobags'] = (new LandsRepository)->silobags($land['id']);
         	if (!empty($land['silobags'])) {

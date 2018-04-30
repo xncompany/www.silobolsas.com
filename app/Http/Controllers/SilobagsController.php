@@ -18,9 +18,9 @@ class SilobagsController extends Controller
      * @return Response
      */
     public function list() {
-        $idUser = session('user')['id'];
-        $lands = (new LandsRepository)->list($idUser);
-        $list = (new SilobagsRepository)->list($idUser);
+        $idOrganization = session('user')['organization']['id'];
+        $lands = (new LandsRepository)->list($idOrganization);
+        $list = (new SilobagsRepository)->list($idOrganization);
         return view('silobags')
                 ->with('list', $list)
                 ->with('lands', $lands);

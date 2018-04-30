@@ -17,13 +17,47 @@
                           <div class="pull-left">
                             <h4 class="m0 text-thin">No hay Silobolsas</h4>
                             <small class="m0 text-muted">
+                              @if (session('user')['admin'])
                               Para utilizar las lanzas debes agregar al menos una silobolsa
+                              @else
+                              Para utilizar las lanzas debes agregar al menos una silobolsa. Por favor contacte con el Administrador de la Cuenta, dado que él tiene permisos suficientes para agregar una Silobolsa al sistema.
+                              @endif
                             </small>
                           </div>
+                          @if (session('user')['admin'])
                           <div class="pull-right">
                             <a href="/silobags">
                               <button class="btn text-black" type="button">Agregar una Silobolsa</button>
                             </a>
+                          </div>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </section>
+
+  @endsection
+
+@elseif (empty($list) && !session('user')['admin'])
+
+
+  @section('content')
+  
+          <section>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12 col-lg-12">
+                    <div class="card bg-danger">
+                      <div class="card-body pv">
+                        <div class="clearfix">
+                          <div class="pull-left">
+                            <h4 class="m0 text-thin">No hay Lanzas</h4>
+                            <small class="m0 text-muted">
+                              Por favor contacte con el Administrador de la Cuenta, dado que él tiene permisos suficientes para agregar una Lanza al sistema.
+                            </small>
                           </div>
                         </div>
                       </div>

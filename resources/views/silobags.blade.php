@@ -16,13 +16,47 @@
                           <div class="pull-left">
                             <h4 class="m0 text-thin">No hay Campos</h4>
                             <small class="m0 text-muted">
+                              @if (session('user')['admin'])
                               Para utilizar las silobolsas debes agregar al menos un campo
+                              @else
+                              Para utilizar las silobolsas debes agregar al menos un campo. Por favor contacte con el Administrador de la Cuenta, dado que él tiene permisos suficientes para agregar un Campo al sistema.
+                              @endif
                             </small>
                           </div>
+                          @if (session('user')['admin'])
                           <div class="pull-right">
                             <a href="/lands">
                               <button class="btn text-black" type="button">Agregar un campo</button>
                             </a>
+                          </div>
+                          @endif
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </section>
+
+  @endsection
+
+@elseif (empty($list) && !session('user')['admin'])
+
+
+  @section('content')
+  
+          <section>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xs-12 col-lg-12">
+                    <div class="card bg-danger">
+                      <div class="card-body pv">
+                        <div class="clearfix">
+                          <div class="pull-left">
+                            <h4 class="m0 text-thin">No hay Silobolsas</h4>
+                            <small class="m0 text-muted">
+                              Por favor contacte con el Administrador de la Cuenta, dado que él tiene permisos suficientes para agregar una Silobolsa al sistema.
+                            </small>
                           </div>
                         </div>
                       </div>
@@ -33,7 +67,8 @@
           </section>
 
   @endsection
-  
+
+
 @else
 
   @section('content')
@@ -50,7 +85,9 @@
                             <th>Silobolsa</th>
                             <th>Campo</th>
                             <th>Alta</th>
+                          @if (session('user')['admin'])
                             <th>Eliminar</th>
+                          @endif
                           </tr>
                         </thead>
                         <tbody>
@@ -61,7 +98,11 @@
                               <td>{{ $silobag['description'] }}</td>
                               <td>{{ $land['description'] }}</td>
                               <td>{{ $silobag['createdAt'] }}</td>
-                              <td><a data-id="{{ $silobag['id'] }}" class="btn ion-android-delete delete-silobag" href="#"></a></td>
+                            @if (session('user')['admin'])
+                              <td>
+                                <a data-id="{{ $silobag['id'] }}" class="btn ion-android-delete delete-silobag" href="#"></a>
+                              </td>
+                            @endif
                             </tr>
                           @endforeach
                         @endforeach

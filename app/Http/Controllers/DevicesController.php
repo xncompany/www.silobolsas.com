@@ -17,9 +17,9 @@ class DevicesController extends Controller
      * @return Response
      */
     public function list() {
-        $idUser = session('user')['id'];
-        $list = (new DevicesRepository)->list($idUser);
-        $lands = (new SilobagsRepository)->list($idUser);
+        $idOrganization = session('user')['organization']['id'];
+        $list = (new DevicesRepository)->list($idOrganization);
+        $lands = (new SilobagsRepository)->list($idOrganization);
         return view('spears')
                 ->with('list', $list)
                 ->with('lands', $lands);

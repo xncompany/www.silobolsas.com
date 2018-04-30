@@ -23,13 +23,13 @@ class SmartiumRepository
     }
 
     /**
-     * Get dashboard information for given user
+     * Get dashboard information for given organization
      *
      * @return Response
      */
-    public function dashboard($id)
+    public function dashboard($idOrganization)
     {
-        $response = $this->client->request('GET', "dashboard?user=$id");
+        $response = $this->client->request('GET', "dashboard?organization=$idOrganization");
         return json_decode($response->getBody(), true);
     }
 }

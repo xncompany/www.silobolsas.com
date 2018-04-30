@@ -15,7 +15,9 @@
                           <th class="sort-numeric">ID</th>
                           <th>Nombre</th>
                           <th>Alta</th>
+                        @if (session('user')['admin'])
                           <th>Eliminar</th>
+                        @endif
                         </tr>
                       </thead>
                       <tbody>
@@ -24,7 +26,11 @@
                           <td>{{ $land['id'] }}</td>
                           <td>{{ $land['description'] }}</td>
                           <td>{{ $land['createdAt'] }}</td>
-                          <td><a data-id="{{ $land['id'] }}" class="btn ion-android-delete delete-land" href="#"></a></td>
+                        @if (session('user')['admin'])
+                          <td>
+                            <a data-id="{{ $land['id'] }}" class="btn ion-android-delete delete-land" href="#"></a>
+                          </td>
+                        @endif
                         </tr>
                       @endforeach
                       </tbody>
