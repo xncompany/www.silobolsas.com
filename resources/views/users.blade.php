@@ -18,6 +18,7 @@
                           <th>Rol</th>
                           <th>Alta</th>
                           <th>Eliminar</th>
+                          <th>Password</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -30,9 +31,13 @@
                           <td>{{ $user['createdAt'] }}</td>
                           @if ($user['id'] == session('user')['id'])
                             <td>&nbsp;</td>
+                            <td>&nbsp;</td>
                           @else
                             <td>
                               <a data-id="{{ $user['id'] }}" class="btn ion-android-delete delete-user" href="#"></a>
+                            </td>
+                            <td>
+                              <a data-id="{{ $user['id'] }}" class="btn ion-ios-unlocked reset-password" href="#"></a>
                             </td>
                           @endif
                         </tr>
@@ -100,6 +105,43 @@
                           </div>
                           <button class="btn btn-success" type="button" id="modal-submit">
                             <span id="buttonlabel">Agregar Usuario</span>
+                            <div class="loader-inner ball-pulse"></div>
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="modal fade modal-compose2" tabindex="-1" role="dialog">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <form action="/password" method="POST" id="formResetPassword">
+                          <input type="hidden" name="id" id="reset-id_user" value="0">
+                          <div class="mda-form-group">
+                            <div class="mda-form-control">
+                              <input class="form-control" type="text" tabindex="0" id="reset-fullname" disabled="disabled">
+                              <div class="mda-form-control-line"></div>
+                              <label>Nombre y Apellido:</label>
+                            </div>
+                          </div>
+                          <div class="mda-form-group">
+                            <div class="mda-form-control">
+                              <input class="form-control" type="text" tabindex="1" id="reset-email" disabled="disabled">
+                              <div class="mda-form-control-line"></div>
+                              <label>Email:</label>
+                            </div>
+                          </div>
+                          <div class="mda-form-group">
+                            <div class="mda-form-control">
+                              <input class="form-control" type="password" tabindex="2" name="password" id="reset-password">
+                              <div class="mda-form-control-line"></div>
+                              <label>Password:</label>
+                            </div>
+                          </div>
+                          <button class="btn btn-success" type="button" id="modal-submit2">
+                            <span id="buttonlabel2">Cambiar Password</span>
                             <div class="loader-inner ball-pulse"></div>
                           </button>
                         </form>

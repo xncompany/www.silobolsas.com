@@ -793,7 +793,15 @@
             $("#modal-submit").attr("disabled", "disabled");
             $(".form-ajax").submit();
         });
+
+        $('#modal-submit2').on('click', function(){
+            $('#buttonlabel2').hide();
+            $('.loader-inner').show();
+            $("#modal-submit2").attr("disabled", "disabled");
+            $("#formResetPassword").submit();
+        });
     }
+
 })();
 
 (function(){
@@ -1115,6 +1123,7 @@
     function initUsers() {
 
         bindDeleteUser();
+        bindResetPassword();
 
         $('#formUsers').ajaxForm({
             error: function(data) {
@@ -1175,13 +1184,33 @@
                     data.email,
                     data.type.description,
                     data.createdAt,
-                    '<a data-id="' + data.id + '" class="btn ion-android-delete delete-user" href="#"></a>'
+                    '<a data-id="' + data.id + '" class="btn ion-android-delete delete-user" href="#"></a>',
+                    '<a data-id="' + data.id + '" class="btn ion-ios-unlocked reset-password" href="#"></a>'
                 ] ).draw( false );
 
                 $('#datatable1 tr:last').addClass('row-' + data.id);
 
                 bindDeleteUser();
+                bindResetPassword();
             }
+        });
+    }
+
+    function bindResetPassword() {
+
+        $('.reset-password').on('click', function(){
+
+            var id = $(this).data('id');
+
+            $('.loader-inner').hide();
+            $('#buttonlabel2').show();
+            $('.modal-compose2').modal();
+            $("#modal-submit2").removeAttr("disabled");
+
+            $('#reset-fullname').val(jQuery(".row-" + id).find("td:eq(1)").text());
+            $('#reset-id_user').val(id);
+            $('#reset-email').val(jQuery(".row-" + id).find("td:eq(2)").text());
+
         });
     }
 
@@ -1224,6 +1253,57 @@
 
         });
     }
+})();
+
+
+(function(){
+    'use strict';
+
+    $(initResetPassword);
+
+    function initResetPassword() {
+
+        $('#formResetPassword').ajaxForm({
+            error: function(data) {
+                var msg = 'Hubo un error. Ya quedó registrado en el Log!';
+                var errors = $.parseJSON(data.responseText);
+                if (errors.message.indexOf("response") >= 0) {
+                    var error = errors.message.substring(errors.message.indexOf("response"));
+                        error = error.replace("\n", "");
+                        error = error.replace("response:", "");
+                        if (errors.message.indexOf("{}") < 0) {
+                            msg = error;
+                        }
+                }
+                $('.modal-compose2').modal('toggle');
+                $('#formResetPassword').find("input[type=text], textarea, input[type=password]").val("");
+                
+                swal('Ooops!', msg, 'error');
+            },
+            beforeSubmit: function(arr, $form, options) { 
+                var password = $('#reset-password').fieldValue()[0];
+                
+                if (!password) {
+                    validationError('Ingrese la contraseña!');
+                    return false;
+                }
+            },
+            success: function(data) {
+                
+                $('.modal-compose2').modal('toggle');
+                $('#formResetPassword').find("input[type=text], textarea, input[type=password]").val("");
+                swal('Éxito!', 'Cambiaste la contraseña correctamente!', 'success');
+            }
+        });
+    }
+
+    function validationError(msg) {
+        swal('Ooops!', msg, 'error');
+        $('.loader-inner').hide();
+        $('#buttonlabel2').show();
+        $("#modal-submit2").removeAttr("disabled");
+    }
+
 })();
 
 (function() {

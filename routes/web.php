@@ -55,6 +55,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/users', 'UsersController@create');
 	Route::delete('/users/{id_user}', 'UsersController@delete');
 
+	Route::post('/password', 'UsersController@resetPassword');
+
 	Route::get('/logout', 'UsersController@logout');
 
 });

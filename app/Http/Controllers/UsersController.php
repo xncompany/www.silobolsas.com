@@ -66,6 +66,15 @@ class UsersController extends Controller
     }
 
     /**
+     * Reset password for given User.
+     *
+     * @return Response
+     */
+    public function resetPassword(Request $request) {
+        return (new UsersRepository)->resetPassword($request);
+    }
+
+    /**
      * List Organizations.
      *
      * @return Response

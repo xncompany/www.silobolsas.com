@@ -9,6 +9,7 @@ use App\Http\Resources\Organization;
 use Illuminate\Http\Request;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 use Session;
 
 class UsersRepository extends SmartiumRepository 
@@ -79,6 +80,26 @@ class UsersRepository extends SmartiumRepository
         $response = $this->client->request('POST', "users", ["body" => $body, "headers" => $headers]);
         $data = json_decode($response->getBody(), true);
         return User::make($data)->resolve();
+    }
+
+    /**
+     * Reset password for given User
+     *
+     * @return Response
+     */
+    public function resetPassword(Request $request) 
+    {
+        # md5 as password
+        $body = "password=" . md5($request->input("password"));
+
+        # uri
+        $url = 'users/' . $request->input('id') . '/password';
+
+        # go!
+        $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
+        $response = $this->client->request('POST', $url, ["body" => $body, "headers" => $headers]);
+        $data = json_decode($response->getBody(), true);
+        return $data;
     }
 
     /**
