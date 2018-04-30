@@ -28,7 +28,7 @@
                           <td>{{ $user['email'] }}</td>
                           <td>{{ $user['type']['description'] }}</td>
                           <td>{{ $user['createdAt'] }}</td>
-                          @if ($user['id'] == 1)
+                          @if ($user['id'] == session('user')['id'])
                             <td>&nbsp;</td>
                           @else
                             <td>
