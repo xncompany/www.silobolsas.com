@@ -11,6 +11,7 @@ use App\Http\Resources\Device;
 use App\Http\Resources\Alert;
 use App\Http\Resources\Metric;
 use Illuminate\Http\Request;
+use GuzzleHttp\Exception\RequestException;
 
 class DevicesRepository extends SmartiumRepository 
 {
@@ -122,7 +123,12 @@ class DevicesRepository extends SmartiumRepository
      */
     public function alerts($id)
     {
-        $response = $this->client->request('GET', "devices/$id/alerts");
+        $data = array();
+        try {
+            $response = $this->client->request('GET', "devices/$id/alerts");
+        } catch(RequestException $e) {
+            return $data;
+        }
         $data = json_decode($response->getBody(), true);
         return SmartiumCollection::get(new Alert($data));
     }
