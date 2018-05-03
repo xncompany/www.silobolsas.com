@@ -14,7 +14,7 @@ class Metric extends JsonResource
      */
     public function toArray($request)
     {
-        $colors = array("1" => "success", "2" => "danger", "3" => "warning");
+        $colors = array("1" => "success", "2" => "warning", "3" => "danger");
 
         return [
             'id' => $this->resource['id'],

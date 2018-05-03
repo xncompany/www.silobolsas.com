@@ -1410,7 +1410,7 @@
 
     function tableDatatables() {
 
-        if (!$.fn.dataTable) return;
+        
 
         // Zero configuration
 
@@ -1434,6 +1434,13 @@
                     sPrevious: '<em class="ion-ios-arrow-left"></em>'
                 }
             }
+        });
+
+        $('#datatable2').dataTable({
+            'paging': true, // Table pagination
+            'ordering': true, // Column ordering
+            'info': false, // Bottom left status text
+            'responsive': true
         });
 
         var inputSearchClass = 'datatable_input_col_search';

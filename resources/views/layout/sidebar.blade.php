@@ -58,7 +58,11 @@
                         <img class="hidden" src="" data-svg-replace="/img/icons/alarm.svg" alt="MenuItem">
                       </span>
                       <span>Alertas</span>
-                      <span class="pull-right nav-label"><span class="badge bg-danger">2</span></span>
+                    @if (session('alerts') > 0)
+                      <span class="pull-right nav-label"><span class="badge bg-danger">{{ session('alerts') }}</span></span>
+                    @else
+                      <span class="pull-right nav-label"><span class="badge bg-success">0</span></span>
+                    @endif
                     </a>
                   </li>
                   @if (session('user')['admin'])

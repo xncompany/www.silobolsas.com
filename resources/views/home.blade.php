@@ -7,12 +7,15 @@
         <section>
           <div class="container-fluid">
             <div class="row">
+
+            @if ($dashboard['counters']['alerts'] > 0)
+
               <div class="col-xs-12 col-lg-12">
                 <div class="card bg-danger">
                   <div class="card-body pv">
                     <div class="clearfix">
                       <div class="pull-left">
-                        <h4 class="m0 text-thin">2</h4><small class="m0 text-muted">alertas en las últimas 24hs</small>
+                        <h4 class="m0 text-thin">{{ $dashboard['counters']['alerts'] }}</h4><small class="m0 text-muted">alerta(s) en las últimas 24hs</small>
                       </div>
                       <div class="pull-right">
                         <a href="/alerts"><button class="btn text-black" type="button">Ver Alertas</button></a>
@@ -21,6 +24,9 @@
                   </div>
                 </div>
               </div>
+
+            @endif
+
               <div class="col-xs-12 col-lg-12">
                 <div class="row">
                   <div class="col-xs-6 col-lg-3">

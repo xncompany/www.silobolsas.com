@@ -17,7 +17,10 @@ class HomeController extends Controller
     public function list() {
         $idOrganization = session('user')['organization']['id'];
         $dashboard = (new SmartiumRepository)->dashboard($idOrganization);
-        $dashboard['map'] = $this->createMapData($dashboard['devices']);
+        $dashboard['map'] = $this->_createMapData($dashboard['devices']);
+
+        
+        session(['alerts' => $dashboard['counters']['alerts']]);
 
         return view('home')->with('dashboard', $dashboard);;
     }
@@ -25,7 +28,7 @@ class HomeController extends Controller
     /**
      * Create Map Data considering only devices with coordinates
      */
-    private function createMapData($devices) 
+    private function _createMapData($devices) 
     {
         $map = new \stdClass();
 

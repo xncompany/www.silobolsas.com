@@ -144,7 +144,7 @@
                 <div class="row">
                     <div class="card">
                       <div class="card-body">
-                        <table class="table-datatable table table-striped table-hover mv-lg" id="datatable1">
+                        <table class="table-datatable table table-striped table-hover mv-lg" id="datatable2">
                           <thead>
                             <tr>
                               <th class="sort-numeric">ID</th>
@@ -155,7 +155,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            @foreach ($device['metrics'] as $metric)
+                            @foreach ($device['history'] as $metric)
                                 <tr>
                                     <td>{{ $metric['id'] }}</td>
                                     <td>{{ $metric['type'] }}</td>

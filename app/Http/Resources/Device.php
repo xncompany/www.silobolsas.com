@@ -32,6 +32,10 @@ class Device extends JsonResource
             $this->_dashboard($model);
         }
 
+        if (isset($this->resource['history'])) {
+            $model['history'] = $this->resource['history'];
+        }
+
         return $model;
     }
 

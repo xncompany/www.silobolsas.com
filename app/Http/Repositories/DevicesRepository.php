@@ -98,8 +98,10 @@ class DevicesRepository extends SmartiumRepository
     {
         $response = $this->client->request('GET', "devices/$id");
         $data = json_decode($response->getBody(), true);
-        $data["metrics"] = $this->metrics($id);
+        $metrics = $this->metrics($id);
+        $data["metrics"] = $metrics['last'];
         $data["alerts"] = $this->alerts($id);
+        $data["history"] = $metrics["history"];
         $device = Device::make($data)->resolve();
         return $device;
     }
@@ -113,7 +115,9 @@ class DevicesRepository extends SmartiumRepository
     {
         $response = $this->client->request('GET', "devices/$id/metrics");
         $data = json_decode($response->getBody(), true);
-        return SmartiumCollection::get(new Metric($data));
+        $data['last'] = SmartiumCollection::get(new Metric($data['last']));
+        $data['history'] = SmartiumCollection::get(new Metric($data['history']));
+        return $data;
     }
 
 	/**
