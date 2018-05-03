@@ -42,13 +42,6 @@
                     </div>
                     <div class="card-body">
                       <div class="clearfix">
-                        <div class="pull-left">
-                          <div class="checkbox c-checkbox">
-                            <label>
-                              <a href="/forgotpassword"> Olvidé mi contraseña.</a>
-                            </label>
-                          </div>
-                        </div>
                         <div class="pull-right mt-sm">
                           <button class="btn bg-green-800" type="submit">Ingresar</button>
                         </div>
