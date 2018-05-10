@@ -26,6 +26,20 @@ class DevicesController extends Controller
     }
 
     /**
+     * get Devices for given User filtered by Silobag
+     *
+     * @return Response
+     */
+    public function listBySilobag($idSilobag) {
+        $idOrganization = session('user')['organization']['id'];
+        $list = (new DevicesRepository)->list($idOrganization, $idSilobag);
+        $lands = (new SilobagsRepository)->list($idOrganization);
+        return view('spears')
+                ->with('list', $list)
+                ->with('lands', $lands);
+    }
+
+    /**
      * Delete given Device
      *
      * @param  int  $id

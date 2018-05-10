@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
 	# ======= Silobags
 
 	Route::get('/silobags', 'SilobagsController@list');
+	Route::get('/silobags/{id_silobag}', 'DevicesController@listBySilobag');
 	Route::post('/silobags', 'SilobagsController@create');
 	Route::delete('/silobags/{id_silobag}', 'SilobagsController@delete');
 

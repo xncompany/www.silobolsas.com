@@ -24,7 +24,7 @@ class DevicesRepository extends SmartiumRepository
      *
      * @return Response
      */
-    public function list($idUser)
+    public function list($idUser, $idSilobag = null)
     {
     	$list = array();
         $lands = (new SilobagsRepository)->list($idUser);
@@ -33,6 +33,11 @@ class DevicesRepository extends SmartiumRepository
             $silobags = array();
         	foreach ($land['silobags'] as &$silobag) 
         	{
+                # filter by silobag if neccesary
+                if (!is_null($idSilobag) && $idSilobag != $silobag['id']) {
+                    continue;
+                }
+
         		$silobag['devices'] = (new SilobagsRepository)->devices($silobag['id']);
         		if (!empty($silobag['devices'])) {
         			$silobags[] = $silobag;

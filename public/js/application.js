@@ -826,7 +826,7 @@
 
                 $('#datatable1').DataTable().row.add( [
                     data.id,
-                    '<a href="lands/'+data.id+'">'+data.description+'</a>',
+                    '<a href="/lands/'+data.id+'">'+data.description+'</a>',
                     data.createdAt,
                     '<a data-id="'+data.id+'" class="btn ion-android-delete delete-land" href="#"></a>'
                 ] ).draw( false );
@@ -889,7 +889,7 @@
 
                 $('#datatable1').DataTable().row.add( [
                     data.id,
-                    data.description,
+                    '<a href="/silobags/'+data.id+'">'+data.description+'</a>',
                     land,
                     data.createdAt,
                     '<a data-id="'+data.id+'" class="btn ion-android-delete delete-silobag" href="#"></a>'

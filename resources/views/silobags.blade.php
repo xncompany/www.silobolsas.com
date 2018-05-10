@@ -95,7 +95,7 @@
                           @foreach ($land['silobags'] as $silobag)
                             <tr class="row-{{ $silobag['id'] }}">
                               <td>{{ $silobag['id'] }}</td>
-                              <td>{{ $silobag['description'] }}</td>
+                              <td><a href="/silobags/{{ $silobag['id'] }}">{{ $silobag['description'] }}</a></td>
                               <td>{{ $land['description'] }}</td>
                               <td>{{ $silobag['createdAt'] }}</td>
                             @if (session('user')['admin'])
