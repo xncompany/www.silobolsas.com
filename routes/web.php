@@ -22,6 +22,7 @@ Route::middleware(['auth'])->group(function () {
 	# ======= Lands
 
 	Route::get('/lands', 'LandsController@list');
+	Route::get('/lands/{id_land}', 'SilobagsController@listByLand');
 	Route::post('/lands', 'LandsController@create');
 	Route::delete('/lands/{id_land}', 'LandsController@delete');
 

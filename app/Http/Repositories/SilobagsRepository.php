@@ -21,11 +21,18 @@ class SilobagsRepository extends SmartiumRepository
      *
      * @return Response
      */
-    public function list($idOrganization)
+    public function list($idOrganization, $idLand = null)
     {
     	$list = array();
         $lands = (new LandsRepository)->list($idOrganization);
-        foreach ($lands as $land) {
+        foreach ($lands as $land) 
+        {
+            # filter by idLand if neccesary
+            if (!is_null($idLand) && $land['id'] != $idLand) {
+                continue;
+            }
+
+            # get silobags and add it to the resultset
         	$land['silobags'] = (new LandsRepository)->silobags($land['id']);
         	if (!empty($land['silobags'])) {
         		$list[] = $land;

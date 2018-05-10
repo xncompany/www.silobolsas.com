@@ -27,6 +27,21 @@ class SilobagsController extends Controller
     }
 
     /**
+     * get Silobags for given Land
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function listByLand($idLand) {
+        $idOrganization = session('user')['organization']['id'];
+        $lands = (new LandsRepository)->list($idOrganization);
+        $list = (new SilobagsRepository)->list($idOrganization, $idLand);
+        return view('silobags')
+                ->with('list', $list)
+                ->with('lands', $lands);
+    }
+
+    /**
      * Create Silobag.
      *
      * @return Response

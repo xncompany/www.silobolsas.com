@@ -24,7 +24,7 @@
                       @foreach ($lands as $land)
                         <tr class="row-{{ $land['id'] }}">
                           <td>{{ $land['id'] }}</td>
-                          <td>{{ $land['description'] }}</td>
+                          <td><a href="/lands/{{ $land['id'] }}">{{ $land['description'] }}</a></td>
                           <td>{{ $land['createdAt'] }}</td>
                         @if (session('user')['admin'])
                           <td>

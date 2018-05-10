@@ -826,7 +826,7 @@
 
                 $('#datatable1').DataTable().row.add( [
                     data.id,
-                    data.description,
+                    '<a href="lands/'+data.id+'">'+data.description+'</a>',
                     data.createdAt,
                     '<a data-id="'+data.id+'" class="btn ion-android-delete delete-land" href="#"></a>'
                 ] ).draw( false );
