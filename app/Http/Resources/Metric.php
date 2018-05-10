@@ -15,6 +15,7 @@ class Metric extends JsonResource
     public function toArray($request)
     {
         $colors = array("1" => "success", "2" => "warning", "3" => "danger");
+        $translate = array("1" => "normal", "2" => "atención", "3" => "alerta");
 
         return [
             'id' => $this->resource['id'],
@@ -24,7 +25,7 @@ class Metric extends JsonResource
             'createdAt' => $this->resource['created_at'],
             'timestamp' => preg_replace("/[^0-9]/", "", $this->resource['created_at']),
             'value' => round($this->resource['amount'], 2) . ' ' . $this->resource['metric_unit']['description'],
-            'status' => $this->resource['metric_status']['description'],
+            'status' => $translate[$this->resource['metric_status']['id']],
             'color' => $colors[$this->resource['metric_status']['id']],
             'type' => $this->resource['metric_type']['description'],
             'attributes' => array(
@@ -34,7 +35,7 @@ class Metric extends JsonResource
                 ),
                 'status' => array(
                     'id' => $this->resource['metric_status']['id'],
-                    'description' => $this->resource['metric_status']['description']
+                    'description' => $translate[$this->resource['metric_status']['id']],
                 ),
                 'unit' => array(
                     'id' => $this->resource['metric_unit']['id'],
