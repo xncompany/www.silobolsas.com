@@ -22,6 +22,7 @@ class DevicesController extends Controller
         $lands = (new SilobagsRepository)->list($idOrganization);
         return view('spears')
                 ->with('list', $list)
+                ->with('chart', false)
                 ->with('lands', $lands);
     }
 
@@ -34,8 +35,16 @@ class DevicesController extends Controller
         $idOrganization = session('user')['organization']['id'];
         $list = (new DevicesRepository)->list($idOrganization, $idSilobag);
         $lands = (new SilobagsRepository)->list($idOrganization);
+
+        $unit = isset($_GET['unit']) ? $_GET['unit'] : 1;
+        $days = isset($_GET['days']) ? $_GET['days'] : 7;
+
         return view('spears')
                 ->with('list', $list)
+                ->with('id', $idSilobag)
+                ->with('unit', $unit)
+                ->with('days', $days)
+                ->with('chart', true)
                 ->with('lands', $lands);
     }
 

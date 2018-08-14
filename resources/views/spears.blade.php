@@ -76,6 +76,49 @@
             <section>
                 <div class="container-fluid">
 
+                  @if ($chart)
+                      <script type="text/javascript">
+                        var idSilobag = {!! $id !!};
+                        var days = {!! $days !!};
+                        var unit = {!! $unit !!};
+                      </script> 
+                      <div class="card">
+                      <div class="card-heading" style="margin-bottom: 10px;">
+                        <!-- START dropdown-->
+                          <div class="pull-left">
+                            @if ($unit == 1)
+                              <a class="btn btn-primary" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=1" role="button">Temperatura</a>
+                            @else
+                              <a class="btn btn-default" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=1" role="button">Temperatura</a>
+                            @endif
+                            @if ($unit == 2)
+                              <a class="btn btn-primary" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=2" role="button">Humedad</a>
+                            @else
+                              <a class="btn btn-default" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=2" role="button">Humedad</a>
+                            @endif
+                            @if ($unit == 3)
+                              <a class="btn btn-primary" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=3" role="button">CO2</a>
+                            @else
+                              <a class="btn btn-default" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=3" role="button">CO2</a>
+                            @endif
+                          </div>
+                        <div class="pull-right dropdown">
+                          <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"><em class="ion-clock"></em></button>
+                          <ul class="dropdown-menu md-dropdown-menu dropdown-menu-right" role="menu">
+                            <li><a href="/silobags/{!! $id !!}?unit={!! $unit !!}&days=7">Última Semana</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit={!! $unit !!}&days=15">Últimos 15 días</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit={!! $unit !!}&days=90">Últimos 3 meses</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit={!! $unit !!}&days=180">Últimos 6 meses</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit={!! $unit !!}&days=365">Último Año</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                        <div class="card-body">
+                          <div class="flot-chart flot-chart-lg" id="line-flotchart"></div>
+                        </div>
+                      </div>
+                  @endif
+
                     <div class="card">
                       <div class="card-body">
                         <table class="table-datatable table table-striped table-hover mv-lg" id="datatable1">

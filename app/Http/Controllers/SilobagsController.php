@@ -69,4 +69,36 @@ class SilobagsController extends Controller
     public function get($id) {
         return (new SilobagsRepository)->get($id);
     }
+
+    /**
+     * get Chart Data
+     *
+     * @param  int  $id, $days, $unit
+     * @return Response
+     */
+    public function chart($id, $days, $unit) {
+        return response()->json($this->parseChartData((new SilobagsRepository)->chart($id, $days, $unit)));
+    }
+
+    public function parseChartData($data) {
+
+        $grouped = array();
+
+        foreach ($data as $row) {
+            $grouped[$row['less_id']][$row['date']] = $row['amount'];
+        }
+
+        $result = array();
+        foreach ($grouped as $lessId => $items) {
+            $device = null;
+            $device['label'] = $lessId;
+            $device['data'] = array();
+            foreach ($items as $key => $value) {
+                $device['data'][] = array($key, $value);
+            }
+            $result[] = $device;
+        }
+
+        return $result;
+    }
 }

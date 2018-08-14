@@ -1582,3 +1582,64 @@
         }
     }
 })();
+
+
+(function() {
+    'use strict';
+
+    $(FlotCharts);
+
+    function FlotCharts() {
+
+        if (!$.fn.plot) return;
+        // LINE
+        // -----------------------------------
+        var uri = '/silobags/' + idSilobag + '/chart/' + days + '/unit/' + unit;
+
+        $.get(uri, function(data) {
+
+            var lineData = data;
+            var lineOptions = {
+                series: {
+                    lines: {
+                        show: true,
+                        fill: 0.01
+                    },
+                    points: {
+                        show: true,
+                        radius: 4
+                    }
+                },
+                grid: {
+                    borderColor: 'rgba(162,162,162,.26)',
+                    borderWidth: 1,
+                    hoverable: true,
+                    backgroundColor: 'transparent'
+                },
+                tooltip: true,
+                tooltipOpts: {
+                    content: function(label, x, y) {
+                        return x + ' : ' + y;
+                    }
+                },
+                xaxis: {
+                    tickColor: 'rgba(162,162,162,.26)',
+                    font: {
+                        color: Colors.byName('blueGrey-200')
+                    },
+                    mode: 'categories'
+                },
+                yaxis: {
+                    // position: (isRTL ? 'right' : 'left'),
+                    tickColor: 'rgba(162,162,162,.26)',
+                    font: {
+                        color: Colors.byName('blueGrey-200')
+                    }
+                },
+                shadowSize: 0
+            };
+
+            $('#line-flotchart').plot(lineData, lineOptions);
+        });
+    }
+})();

@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/silobags', 'SilobagsController@list');
 	Route::get('/silobags/{id_silobag}', 'DevicesController@listBySilobag');
+	Route::get('/silobags/{id_silobag}/chart/{days}/unit/{unit}', 'SilobagsController@chart');
 	Route::post('/silobags', 'SilobagsController@create');
 	Route::delete('/silobags/{id_silobag}', 'SilobagsController@delete');
 

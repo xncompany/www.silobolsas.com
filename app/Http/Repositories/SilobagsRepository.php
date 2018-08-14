@@ -92,4 +92,15 @@ class SilobagsRepository extends SmartiumRepository
         $data = json_decode($response->getBody(), true);
         return SmartiumCollection::get(new Device($data));
     }
+
+    /**
+     * List chart
+     *
+     * @return Response
+     */
+    public function chart($id, $days, $unit)
+    {
+        $response = $this->client->request('GET', "silobags/$id/chart/$days/unit/$unit");
+        return json_decode($response->getBody(), true);
+    }
 }
