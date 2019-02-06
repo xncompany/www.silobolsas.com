@@ -122,10 +122,11 @@
                             <div class="col-sm-10">
                             @foreach ($list as $land)
                               @foreach ($land['silobags'] as $silobag)
-                                @foreach ($silobag['devices'] as $device)                                
-                                  <label class="checkbox checkbox-inline" style="margin-top: 0;">
-                                    <input class="checkboxChart" id="inlineCheckbox{{$device['id']}}" type="checkbox" checked="checked" value="{{$device['idLess']}}"> {{$device['idLess']}}
-                                  </label>
+                                @foreach ($silobag['devices'] as $device)
+                                <label class="checkbox-inline c-checkbox" style="margin-top: 0;">
+                                  <input type="checkbox" checked="" class="checkboxChart" value="{{$device['idLess']}}">
+                                  <span class="ion-checkmark" id="inlineCheckbox{{$device['idLess']}}"></span> {{$device['idLess']}}
+                                </label>
                                 @endforeach
                               @endforeach
                             @endforeach

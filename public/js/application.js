@@ -1636,15 +1636,16 @@
             }
         });
 
-        if (!spears.length) {
-            return;
-        }
+        $('.ion-checkmark').each(function() {
+            $(this).css('background-color', '#FFF');
+            $(this).css('border-color', '#EEE');
+        });
 
 
         var uri = '/silobags/' + idSilobag + '/chart/' + days + '/unit/' + unit + '?spears=' + spears.join();
 
-        $.get(uri, function(data) {
-
+        $.get(uri, function(data) 
+        {
             var lineData = data.data;
             var lineOptions = {
                 series: {
@@ -1666,13 +1667,13 @@
                 tooltip: true,
                 tooltipOpts: {
                     content: function(label, x, y) {
-                        return x + ' : ' + y;
+                        return 'Lanza ' + label + ' : ' + Number(y).toFixed(2);
                     }
                 },
                 xaxis: {
                     tickColor: 'rgba(162,162,162,.26)',
                     font: {
-                        color: Colors.byName('blueGrey-200')
+                        color: '#000000'
                     },
                     mode: 'categories'
                 },
@@ -1680,11 +1681,19 @@
                     // position: (isRTL ? 'right' : 'left'),
                     tickColor: 'rgba(162,162,162,.26)',
                     font: {
-                        color: Colors.byName('blueGrey-200')
+                        color: '#000000'
                     }
                 },
                 shadowSize: 0,
-                colors: data.colors
+                colors: data.colors,
+                legend: {
+                    labelFormatter: function(label, series){
+                        var id = '#inlineCheckbox' + label;
+                        var color = series.color;
+                        $(id).css('background-color', color);
+                        $(id).css('border-color', color);
+                    }
+                }
             };
 
             $('#line-flotchart').plot(lineData, lineOptions);
