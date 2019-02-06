@@ -8004,3 +8004,16 @@ textarea.no-resize {
   padding-top: 80px;
   padding-bottom: 80px;
 }
+
+
+td.bg-danger > a:link,
+td.bg-danger > a:visited,
+td.bg-danger > a:hover {
+  color: white !important;
+}
+
+td.bg-light-green-100 > a:link,
+td.bg-light-green-100 > a:visited,
+td.bg-light-green-100 > a:hover {
+  color: #4F5256 !important;
+}

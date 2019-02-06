@@ -932,6 +932,25 @@
 
 
 
+(function(){
+    'use strict';
+
+    $(initDashboard2);
+
+    function initDashboard2() {
+
+        $('#datatableDashboard').DataTable( {
+            "order": [[ 2, "desc" ]],
+            "paging": false,
+            "bInfo": false,
+            "searching": false
+        } );
+
+    }
+
+
+})();
+
 
 (function(){
     'use strict';
@@ -1594,6 +1613,9 @@
         if (!$.fn.plot) return;
         // LINE
         // -----------------------------------
+        if (typeof idSilobag === 'undefined') {
+            return;
+        }
         var uri = '/silobags/' + idSilobag + '/chart/' + days + '/unit/' + unit;
 
         $.get(uri, function(data) {

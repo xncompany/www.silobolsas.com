@@ -34,7 +34,9 @@
                       <div class="card-body pv">
                         <div class="clearfix">
                           <div class="pull-left">
-                            <h4 class="m0 text-thin">{{ $dashboard['counters']['lands'] }}</h4>
+                            <h4 class="m0 text-thin">
+                              <a href="/lands">{{ $dashboard['counters']['lands'] }}</a>
+                            </h4>
                             <small class="m0 text-muted">Campos</small>
                           </div>
                         </div>
@@ -46,7 +48,9 @@
                       <div class="card-body pv">
                         <div class="clearfix">
                           <div class="pull-left">
-                            <h4 class="m0 text-thin">{{ $dashboard['counters']['silobags'] }}</h4>
+                            <h4 class="m0 text-thin">
+                              <a href="/silobags">{{ $dashboard['counters']['silobags'] }}</a>
+                            </h4>
                             <small class="m0 text-muted">Silobolsas</small>
                           </div>
                         </div>
@@ -58,7 +62,9 @@
                       <div class="card-body pv">
                         <div class="clearfix">
                           <div class="pull-left">
-                            <h4 class="m0 text-thin">{{ $dashboard['counters']['devices'] }}</h4>
+                            <h4 class="m0 text-thin">
+                              <a href="/spears">{{ $dashboard['counters']['devices'] }}</a>
+                            </h4>
                             <small class="m0 text-muted">Lanzas</small>
                           </div>
                         </div>
@@ -70,7 +76,7 @@
                       <div class="card-body pv">
                         <div class="clearfix">
                           <div class="pull-left">
-                            <h4 class="m0 text-thin">{{ $dashboard['counters']['metrics'] }}</h4>
+                            <h4 class="m0 text-thin">{{ number_format($dashboard['counters']['metrics']) }}</h4>
                             <small class="m0 text-muted">Mediciones</small>
                           </div>
                         </div>
@@ -86,12 +92,34 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="card">
-                      <div class="card-heading">
-                        <div class="card-title">{{ $dashboard['map']->title }}</div>
-                        <small>con informaci&oacute;n de coordenadas</small>
-                      </div>
                       <div class="card-body">
-                        <div class="gmap" id="map-markers"></div>
+
+                        <table class="table-datatable table table-striped table-hover mv-lg" id="datatableDashboard">
+                          <thead>
+                            <tr>
+                              <th class="sort-numeric">ID</th>
+                              <th>Silobolsa</th>
+                              <th>Campo</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          @foreach ($dashboard['silobags'] as $silobag)
+                          <?php $color = (isset($silobag['alarm']) ? 'bg-danger' : 'bg-light-green-100'); ?>
+                            <tr>
+                              <td class="{{$color}}">
+                                {{ $silobag['id'] }}
+                              </td>
+                              <td class="{{$color}}">
+                                <a href="/silobags/{{ $silobag['id'] }}">{{ $silobag['description'] }}</a>
+                              </td>
+                              <td class="{{$color}}">
+                                <a href="/lands/{{ $silobag['idLand'] }}">{{ $silobag['land'] }}</a>
+                              </td>
+                            </tr>
+                          @endforeach
+                          </tbody>
+                        </table>
+
                       </div>
                     </div>
                   </div>
