@@ -1603,10 +1603,20 @@
 })();
 
 
+
 (function() {
     'use strict';
 
     $(FlotCharts);
+
+    $(bindCheckboxChart);
+
+    function bindCheckboxChart() 
+    {
+        $('.checkboxChart').click(function(){
+            FlotCharts();
+        });
+    }
 
     function FlotCharts() {
 
@@ -1616,16 +1626,31 @@
         if (typeof idSilobag === 'undefined') {
             return;
         }
-        var uri = '/silobags/' + idSilobag + '/chart/' + days + '/unit/' + unit;
+
+        // Go go go!
+        var spears = [];
+        $('.checkboxChart').each(function () 
+        {
+            if (this.checked) {
+                spears.push($(this).val());
+            }
+        });
+
+        if (!spears.length) {
+            return;
+        }
+
+
+        var uri = '/silobags/' + idSilobag + '/chart/' + days + '/unit/' + unit + '?spears=' + spears.join();
 
         $.get(uri, function(data) {
 
-            var lineData = data;
+            var lineData = data.data;
             var lineOptions = {
                 series: {
                     lines: {
                         show: true,
-                        fill: 0.01
+                        fill: 0.00
                     },
                     points: {
                         show: true,
@@ -1658,7 +1683,8 @@
                         color: Colors.byName('blueGrey-200')
                     }
                 },
-                shadowSize: 0
+                shadowSize: 0,
+                colors: data.colors
             };
 
             $('#line-flotchart').plot(lineData, lineOptions);

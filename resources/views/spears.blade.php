@@ -116,6 +116,22 @@
                         <div class="card-body">
                           <div class="flot-chart flot-chart-lg" id="line-flotchart"></div>
                         </div>
+                        <div class="card-footer">
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label">Seleccionar Lanzas: </label>
+                            <div class="col-sm-10">
+                            @foreach ($list as $land)
+                              @foreach ($land['silobags'] as $silobag)
+                                @foreach ($silobag['devices'] as $device)                                
+                                  <label class="checkbox checkbox-inline" style="margin-top: 0;">
+                                    <input class="checkboxChart" id="inlineCheckbox{{$device['id']}}" type="checkbox" checked="checked" value="{{$device['idLess']}}"> {{$device['idLess']}}
+                                  </label>
+                                @endforeach
+                              @endforeach
+                            @endforeach
+                            </div>
+                          </div>
+                        </div>
                       </div>
                   @endif
 
