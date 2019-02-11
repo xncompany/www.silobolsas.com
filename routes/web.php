@@ -7,6 +7,11 @@ Route::get('/login', function () {
 
 
 Route::post('/login', 'UsersController@login');
+Route::get('/session', function() {
+	echo '<pre>';
+	$data = session()->all();
+	print_r($data);
+});
 
 
 Route::middleware(['auth'])->group(function () {

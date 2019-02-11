@@ -1745,12 +1745,14 @@
 
     function formAdvanced() {
 
-        if ( !$.fn.datepicker) return;
+        if ( !$.fn.datepicker || !$.fn.select2 ) return;
 
         $('#example-datepicker-5').datepicker({
             container:'#example-datepicker-container-5',
             autoclose: true
         });
+
+        $('#select2-3').select2();
     }
 
 })();

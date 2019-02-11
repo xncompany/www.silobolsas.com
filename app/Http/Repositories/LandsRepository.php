@@ -27,6 +27,18 @@ class LandsRepository extends SmartiumRepository
     }
 
     /**
+     * List Lands for given Organization
+     *
+     * @return Response
+     */
+    public function all()
+    {
+        $response = $this->client->request('GET', "lands");
+        $data = json_decode($response->getBody(), true);
+        return SmartiumCollection::get(new Land($data));
+    }
+
+    /**
      * Create Land
      *
      * @return Response

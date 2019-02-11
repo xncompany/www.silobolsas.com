@@ -103,6 +103,36 @@
                               <label>Permisos:</label>
                             </div>
                           </div>
+                          <div class="mda-form-group">
+                            <div class="mda-form-control">
+                              <select style="width: 100%;" class="form-control" name="user_lands"  id="select2-3" multiple="multiple">
+                              <?php $last = 0; ?>
+                              @foreach ($lands as $land)
+
+                                @if ($land['organization']['id'] == session('user')['organization']['id'])
+                                  @continue;
+                                @endif
+
+                                @if ($land['organization']['id'] != $last)
+
+                                  @if ($last != 0)
+                                    </optgroup>
+                                  @endif
+
+                                <optgroup label="{{ $land['organization']['description'] }}">
+                                <?php $last = $land['organization']['id'] ?>
+
+                                @endif
+                                
+                                <option value="{{ $land['id'] }}">{{ $land['description'] }}</option>
+
+                              @endforeach
+                                </optgroup>
+                              </select>
+                              <div class="mda-form-control-line"></div>
+                              <label>Campos de Terceros:</label>
+                            </div>
+                          </div>
                           <button class="btn btn-success" type="button" id="modal-submit">
                             <span id="buttonlabel">Agregar Usuario</span>
                             <div class="loader-inner ball-pulse"></div>

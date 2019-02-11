@@ -14,11 +14,21 @@ class Land extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        $data = [
             'id' => $this->resource['id'],
             'description' => $this->resource['description'],
             'isActive' => $this->resource['active'],
             'createdAt' => $this->resource['created_at']
         ];
+
+        if (isset($this->resource['organization'])) 
+        {
+            $data['organization'] = array(
+                'id' => $this->resource['organization']['id'],
+                'description' => $this->resource['organization']['description']
+            );
+        }
+
+        return $data;
     }
 }

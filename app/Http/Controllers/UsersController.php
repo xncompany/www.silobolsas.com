@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Repositories\UsersRepository;
+use App\Http\Repositories\LandsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Session;
@@ -96,6 +97,7 @@ class UsersController extends Controller
     public function users() {
         $idOrganization = session('user')['organization']['id'];
         $users = (new UsersRepository)->usersByOrganization($idOrganization);
-        return view('users')->with('users', $users);
+        $lands = (new LandsRepository)->all();
+        return view('users')->with('users', $users)->with('lands', $lands);
     }
 }
