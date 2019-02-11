@@ -76,11 +76,14 @@ class SilobagsController extends Controller
      * @param  int  $id, $days, $unit
      * @return Response
      */
-    public function chart($id, $days, $unit) 
+    public function chart($id, $unit) 
     {
         $palette = array('#e6194B', '#3cb44b', '#ffe119', '#4363d8', '#f58231', '#42d4f4', '#f032e6', '#fabebe', '#469990', '#9A6324');
 
-        $data = $this->parseChartData((new SilobagsRepository)->chart($id, $days, $unit));
+        $start = request()->input('start');
+        $end = request()->input('end');
+
+        $data = $this->parseChartData((new SilobagsRepository)->chart($id, $unit, $start, $end));
         $spears = explode(',', request()->input('spears'));
         $result = array();
         $colors = array();

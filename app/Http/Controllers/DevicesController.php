@@ -20,6 +20,7 @@ class DevicesController extends Controller
         $idOrganization = session('user')['organization']['id'];
         $list = (new DevicesRepository)->list($idOrganization);
         $lands = (new SilobagsRepository)->list($idOrganization);
+
         return view('spears')
                 ->with('list', $list)
                 ->with('chart', false)
@@ -39,11 +40,16 @@ class DevicesController extends Controller
         $unit = isset($_GET['unit']) ? $_GET['unit'] : 1;
         $days = isset($_GET['days']) ? $_GET['days'] : 7;
 
+        $start = date('m/d/Y', time() - (365 * 24 * 60 * 60));
+        $end = date('m/d/Y');
+
         return view('spears')
                 ->with('list', $list)
                 ->with('id', $idSilobag)
                 ->with('unit', $unit)
                 ->with('days', $days)
+                ->with('start', $start)
+                ->with('end', $end)
                 ->with('chart', true)
                 ->with('lands', $lands);
     }

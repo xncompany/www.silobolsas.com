@@ -1608,12 +1608,20 @@
     'use strict';
 
     $(FlotCharts);
-
     $(bindCheckboxChart);
+    $(bindGoChart);
 
     function bindCheckboxChart() 
     {
         $('.checkboxChart').click(function(){
+            FlotCharts();
+        });
+    }
+
+
+    function bindGoChart() 
+    {
+        $('#goChart').click(function(){
             FlotCharts();
         });
     }
@@ -1642,7 +1650,19 @@
         });
 
 
-        var uri = '/silobags/' + idSilobag + '/chart/' + days + '/unit/' + unit + '?spears=' + spears.join();
+        var start = 0;
+        var end = 0;
+        var dataPicker = $('#example-datepicker-5').data('datepicker');
+
+        if (typeof dataPicker !== 'undefined') 
+        {
+            start = dataPicker.inputs[0].value;
+            end = dataPicker.inputs[1].value;
+        }
+
+        var uri = '/silobags/' + idSilobag + '/chart/' + unit + '?spears=' + spears.join() + '&start=' + start + '&end=' + end;
+            uri = encodeURI(uri);
+
 
         $.get(uri, function(data) 
         {
@@ -1699,4 +1719,22 @@
             $('#line-flotchart').plot(lineData, lineOptions);
         });
     }
+})();
+
+
+(function() {
+    'use strict';
+
+    $(formAdvanced);
+
+    function formAdvanced() {
+
+        if ( !$.fn.datepicker) return;
+
+        $('#example-datepicker-5').datepicker({
+            container:'#example-datepicker-container-5',
+            autoclose: true
+        });
+    }
+
 })();

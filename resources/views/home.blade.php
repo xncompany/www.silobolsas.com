@@ -92,12 +92,16 @@
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="card">
+                      <div class="card-heading">
+                        <div class="card-title">Estado de Silobolsas</div>
+                      </div>
                       <div class="card-body">
 
-                        <table class="table-datatable table table-striped table-hover mv-lg" id="datatableDashboard">
+                        <table class="table-datatable table table-striped table-hover" id="datatableDashboard">
                           <thead>
                             <tr>
                               <th class="sort-numeric">ID</th>
+                              <th>Estado</th>
                               <th>Silobolsa</th>
                               <th>Campo</th>
                             </tr>
@@ -106,13 +110,22 @@
                           @foreach ($dashboard['silobags'] as $silobag)
                           <?php $color = (isset($silobag['alarm']) ? 'bg-danger' : 'bg-light-green-100'); ?>
                             <tr>
-                              <td class="{{$color}}">
-                                {{ $silobag['id'] }}
+                              <td>{{ $silobag['id'] }}</td>
+                              <td>
+                                <ul class="pager">
+                                    <li>
+                                    @if (isset($silobag['alarm']))
+                                        <a class="danger" href="/silobags/{{ $silobag['id'] }}">Alerta!</a>
+                                    @else
+                                        <a class="success" href="/silobags/{{ $silobag['id'] }}">Ok ✓</a>
+                                    @endif
+                                    </li>
+                                </ul>
                               </td>
-                              <td class="{{$color}}">
+                              <td>
                                 <a href="/silobags/{{ $silobag['id'] }}">{{ $silobag['description'] }}</a>
                               </td>
-                              <td class="{{$color}}">
+                              <td>
                                 <a href="/lands/{{ $silobag['idLand'] }}">{{ $silobag['land'] }}</a>
                               </td>
                             </tr>

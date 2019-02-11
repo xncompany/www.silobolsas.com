@@ -103,15 +103,25 @@
                             @endif
                           </div>
                         <div class="pull-right dropdown">
-                          <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown"><em class="ion-clock"></em></button>
-                          <ul class="dropdown-menu md-dropdown-menu dropdown-menu-right" role="menu">
-                            <li><a href="/silobags/{!! $id !!}?unit={!! $unit !!}&days=7">Última Semana</a></li>
-                            <li><a href="/silobags/{!! $id !!}?unit={!! $unit !!}&days=15">Últimos 15 días</a></li>
-                            <li><a href="/silobags/{!! $id !!}?unit={!! $unit !!}&days=90">Últimos 3 meses</a></li>
-                            <li><a href="/silobags/{!! $id !!}?unit={!! $unit !!}&days=180">Últimos 6 meses</a></li>
-                            <li><a href="/silobags/{!! $id !!}?unit={!! $unit !!}&days=365">Último Año</a></li>
-                          </ul>
+                          <button class="btn btn-default" id="goChart" type="button" style="margin-left: 20px;">Go!</button>
                         </div>
+
+                        <div class="pull-right dropdown">
+                          <div class="rel-wrapper ui-datepicker ui-datepicker-popup dp-theme-success" id="example-datepicker-container-5">
+                            <div class="input-daterange input-group mda-input-group" id="example-datepicker-5">
+                              <div class="mda-form-control" style="padding-top: 0px;">
+                                <input class="form-control" type="text" name="start" value="{{$start}}">
+                                <div class="mda-form-control-line"></div>
+                              </div>
+                              <span class="input-group-addon">to</span>
+                              <div class="mda-form-control" style="padding-top: 0px;">
+                                <input class="form-control" type="text" name="end" value="{{$end}}">
+                                <div class="mda-form-control-line"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
                       </div>
                         <div class="card-body">
                           <div class="flot-chart flot-chart-lg" id="line-flotchart"></div>

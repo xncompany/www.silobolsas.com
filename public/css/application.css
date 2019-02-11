@@ -8017,3 +8017,26 @@ td.bg-light-green-100 > a:visited,
 td.bg-light-green-100 > a:hover {
   color: #4F5256 !important;
 }
+
+table#datatableDashboard a, 
+table#datatableDashboard .btn-link {
+  color: #666666;
+}
+
+.pager > li > a.success:link, 
+.pager > li > a.success:visited, 
+.pager > li > a.success:hover {
+  background-color: #006633 !important;
+  color: #FFF !important;
+}
+
+.pager > li > a.danger:link, 
+.pager > li > a.danger:visited, 
+.pager > li > a.danger:hover {
+  background-color: #d50000 !important;
+  color: #FFF !important;
+}
+
+table#datatableDashboard > tbody > tr > td > .pager {
+  margin: 0px !important;
+}

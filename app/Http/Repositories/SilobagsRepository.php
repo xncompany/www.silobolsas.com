@@ -98,9 +98,10 @@ class SilobagsRepository extends SmartiumRepository
      *
      * @return Response
      */
-    public function chart($id, $days, $unit)
+    public function chart($id, $unit, $start, $end)
     {
-        $response = $this->client->request('GET', "silobags/$id/chart/$days/unit/$unit");
+        $url = "silobags/$id/chart/$unit?start=$start&end=$end";
+        $response = $this->client->request('GET', $url);
         return json_decode($response->getBody(), true);
     }
 }
