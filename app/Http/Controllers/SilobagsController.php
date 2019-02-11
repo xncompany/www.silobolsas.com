@@ -96,7 +96,7 @@ class SilobagsController extends Controller
             }
             $i++;
         }
-        return response()->json(array('data' => $result, 'colors' => $colors));
+        return response()->json(array('data' => $result, 'colors' => $colors, 'id' => $unit));
     }
 
     public function parseChartData($data) {

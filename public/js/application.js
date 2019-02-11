@@ -1660,64 +1660,80 @@
             end = dataPicker.inputs[1].value;
         }
 
-        var uri = '/silobags/' + idSilobag + '/chart/' + unit + '?spears=' + spears.join() + '&start=' + start + '&end=' + end;
-            uri = encodeURI(uri);
+        var s = unit;
+        var e = unit;
+        if (unit == 0) {
+            s = 1;
+            e = 3;
+        }
 
-
-        $.get(uri, function(data) 
+        for (var i = s; i <= e; i++) 
         {
-            var lineData = data.data;
-            var lineOptions = {
-                series: {
-                    lines: {
-                        show: true,
-                        fill: 0.00
-                    },
-                    points: {
-                        show: true,
-                        radius: 4
-                    }
-                },
-                grid: {
-                    borderColor: 'rgba(162,162,162,.26)',
-                    borderWidth: 1,
-                    hoverable: true,
-                    backgroundColor: 'transparent'
-                },
-                tooltip: true,
-                tooltipOpts: {
-                    content: function(label, x, y) {
-                        return 'Lanza ' + label + ' : ' + Number(y).toFixed(2);
-                    }
-                },
-                xaxis: {
-                    tickColor: 'rgba(162,162,162,.26)',
-                    font: {
-                        color: '#000000'
-                    },
-                    mode: 'categories'
-                },
-                yaxis: {
-                    // position: (isRTL ? 'right' : 'left'),
-                    tickColor: 'rgba(162,162,162,.26)',
-                    font: {
-                        color: '#000000'
-                    }
-                },
-                shadowSize: 0,
-                colors: data.colors,
-                legend: {
-                    labelFormatter: function(label, series){
-                        var id = '#inlineCheckbox' + label;
-                        var color = series.color;
-                        $(id).css('background-color', color);
-                        $(id).css('border-color', color);
-                    }
-                }
-            };
+            var uri = '/silobags/' + idSilobag + '/chart/' + i + '?spears=' + spears.join() + '&start=' + start + '&end=' + end;
+                uri = encodeURI(uri);
 
-            $('#line-flotchart').plot(lineData, lineOptions);
-        });
+
+            $.get(uri, function(data) 
+            {
+                var lineData = data.data;
+                var lineOptions = {
+                    series: {
+                        lines: {
+                            show: true,
+                            fill: 0.00
+                        },
+                        points: {
+                            show: true,
+                            radius: 4
+                        }
+                    },
+                    grid: {
+                        borderColor: 'rgba(162,162,162,.26)',
+                        borderWidth: 1,
+                        hoverable: true,
+                        backgroundColor: 'transparent'
+                    },
+                    tooltip: true,
+                    tooltipOpts: {
+                        content: function(label, x, y) {
+                            return 'Lanza ' + label + ' : ' + Number(y).toFixed(2);
+                        }
+                    },
+                    xaxis: {
+                        tickColor: 'rgba(162,162,162,.26)',
+                        font: {
+                            color: '#000000'
+                        },
+                        mode: 'categories'
+                    },
+                    yaxis: {
+                        // position: (isRTL ? 'right' : 'left'),
+                        tickColor: 'rgba(162,162,162,.26)',
+                        font: {
+                            color: '#000000'
+                        }
+                    },
+                    shadowSize: 0,
+                    colors: data.colors,
+                    legend: {
+                        labelFormatter: function(label, series){
+                            var id = '#inlineCheckbox' + label;
+                            var color = series.color;
+                            $(id).css('background-color', color);
+                            $(id).css('border-color', color);
+                        }
+                    }
+                };
+
+                if (unit == 0) {
+                    $('#line-flotchart' + data.id).plot(lineData, lineOptions);
+                } else {
+                    $('#line-flotchart').plot(lineData, lineOptions);
+                }
+            });
+
+        }
+
     }
 })();
 

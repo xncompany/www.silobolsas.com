@@ -84,47 +84,57 @@
                       </script> 
                       <div class="card">
                       <div class="card-heading" style="margin-bottom: 10px;">
-                        <!-- START dropdown-->
-                          <div class="pull-left">
-                            @if ($unit == 1)
-                              <a class="btn btn-primary" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=1" role="button">Temperatura</a>
-                            @else
-                              <a class="btn btn-default" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=1" role="button">Temperatura</a>
-                            @endif
-                            @if ($unit == 2)
-                              <a class="btn btn-primary" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=2" role="button">Humedad</a>
-                            @else
-                              <a class="btn btn-default" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=2" role="button">Humedad</a>
-                            @endif
-                            @if ($unit == 3)
-                              <a class="btn btn-primary" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=3" role="button">CO2</a>
-                            @else
-                              <a class="btn btn-default" href="/silobags/{!! $id !!}?days={!! $days !!}&unit=3" role="button">CO2</a>
-                            @endif
-                          </div>
-                        <div class="pull-right dropdown">
-                          <button class="btn btn-default" id="goChart" type="button" style="margin-left: 20px;">Go!</button>
-                        </div>
 
                         <div class="pull-right dropdown">
-                          <div class="rel-wrapper ui-datepicker ui-datepicker-popup dp-theme-success" id="example-datepicker-container-5">
+                          <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false"><em class="ion-stats-bars"></em></button>
+                          <ul class="dropdown-menu md-dropdown-menu dropdown-menu-right" role="menu">
+                            <li><a href="/silobags/{!! $id !!}?unit=0">Temperatura & Humedad & CO2</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit=1">Temperatura</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit=2">Humedad</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit=3">CO2</a></li>
+                          </ul>
+                        </div>
+
+                        <div class="pull-left">
+                          <div class="rel-wrapper ui-datepicker ui-datepicker-popup dp-theme-success" id="example-datepicker-container-5" style="width: 200px;">
                             <div class="input-daterange input-group mda-input-group" id="example-datepicker-5">
                               <div class="mda-form-control" style="padding-top: 0px;">
-                                <input class="form-control" type="text" name="start" value="{{$start}}">
+                                <input class="form-control" type="text" name="start" value="{{$start}}" style="padding-left: 0;">
                                 <div class="mda-form-control-line"></div>
                               </div>
                               <span class="input-group-addon">to</span>
                               <div class="mda-form-control" style="padding-top: 0px;">
-                                <input class="form-control" type="text" name="end" value="{{$end}}">
+                                <input class="form-control" type="text" name="end" value="{{$end}}" style="padding-left: 0;">
                                 <div class="mda-form-control-line"></div>
                               </div>
                             </div>
                           </div>
                         </div>
 
+                        <div class="pull-left">
+                          <button class="btn btn-default" id="goChart" type="button" style="margin-left: 20px;">Go!</button>
+                        </div>
+
                       </div>
-                        <div class="card-body">
-                          <div class="flot-chart flot-chart-lg" id="line-flotchart"></div>
+                        <div class="card-body" style="min-height: 360px;">
+                          @if ($unit == 0)
+                          <div class="form-group">
+                            <div class="col-sm-4 col-lg-4">
+                              <p style="padding: 10px;">Temperatura</p>
+                              <div class="flot-chart flot-chart-lg" id="line-flotchart1"></div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4">
+                              <p style="padding: 10px;">Humedad</p>
+                              <div class="flot-chart flot-chart-lg" id="line-flotchart2"></div>
+                            </div>
+                            <div class="col-sm-4 col-lg-4">
+                              <p style="padding: 10px;">CO2</p>
+                              <div class="flot-chart flot-chart-lg" id="line-flotchart3"></div>
+                            </div>
+                          </div>
+                          @else
+                            <div class="flot-chart flot-chart-lg" id="line-flotchart"></div>
+                          @endif
                         </div>
                         <div class="card-footer">
                           <div class="form-group">
