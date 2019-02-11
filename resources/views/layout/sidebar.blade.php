@@ -81,6 +81,7 @@
                       <span>Logout</span>
                     </a>
                   </li>
+                  @if (session('superadmin') > 0)
                   <li>
                     <a class="ripple" href="#">
                       <span class="nav-icon admin">
@@ -92,6 +93,7 @@
                       <li><a class="ripple" href="/configurations"><span class="pull-right nav-label"></span><span>Configuración</span><span class="md-ripple"></span></a></li>
                     </ul>
                   </li>
+                  @endif
                 </ul>
               </nav>
             </div>

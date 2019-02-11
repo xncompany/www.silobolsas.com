@@ -22,6 +22,11 @@ class UsersController extends Controller
         if ($user == false) {
             return view('login')->with('fail', true);
         }
+
+        if (strpos($request->input('email'), 'xncompany.com')) {
+            session(['superadmin' => true]);
+        }
+
         return redirect()->route('home');;
     }
 
