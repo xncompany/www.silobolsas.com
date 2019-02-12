@@ -32,24 +32,33 @@ class DevicesController extends Controller
      *
      * @return Response
      */
-    public function listBySilobag($idSilobag) {
+    public function listBySilobag(Request $request, $idSilobag) {
         $idOrganization = session('user')['organization']['id'];
+
+        $owner = true;
+        if ($request->has('organization')) {
+            $idOrganization = $request->input('organization');
+            $owner = (session('user')['organization']['id'] == $idOrganization);
+        }
+
         $list = (new DevicesRepository)->list($idOrganization, $idSilobag);
         $lands = (new SilobagsRepository)->list($idOrganization);
 
-        $unit = isset($_GET['unit']) ? $_GET['unit'] : 1;
-        $days = isset($_GET['days']) ? $_GET['days'] : 7;
+        $unit = isset($_GET['unit']) ? $_GET['unit'] : 0;
+        $days = isset($_GET['days']) ? $_GET['days'] : 365;
 
         $start = date('m/d/Y', time() - (365 * 24 * 60 * 60));
         $end = date('m/d/Y');
 
         return view('spears')
+                ->with('owner', $owner)
                 ->with('list', $list)
                 ->with('id', $idSilobag)
                 ->with('unit', $unit)
                 ->with('days', $days)
                 ->with('start', $start)
                 ->with('end', $end)
+                ->with('organization', $idOrganization)
                 ->with('chart', true)
                 ->with('lands', $lands);
     }

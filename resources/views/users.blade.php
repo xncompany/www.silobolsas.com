@@ -105,7 +105,7 @@
                           </div>
                           <div class="mda-form-group">
                             <div class="mda-form-control">
-                              <select style="width: 100%;" class="form-control" name="user_lands"  id="select2-3" multiple="multiple">
+                              <select style="width: 100%;" class="form-control" name="user_lands[]"  id="select2-3" multiple="multiple">
                               <?php $last = 0; ?>
                               @foreach ($lands as $land)
 

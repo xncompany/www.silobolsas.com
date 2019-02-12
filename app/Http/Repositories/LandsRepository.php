@@ -19,6 +19,18 @@ class LandsRepository extends SmartiumRepository
      *
      * @return Response
      */
+    public function listByUser($id)
+    {
+        $response = $this->client->request('GET', "lands?user=$id");
+        $data = json_decode($response->getBody(), true);
+        return SmartiumCollection::get(new Land($data));
+    }
+
+    /**
+     * List Lands for given Organization
+     *
+     * @return Response
+     */
     public function list($id)
     {
         $response = $this->client->request('GET', "lands?organization=$id");

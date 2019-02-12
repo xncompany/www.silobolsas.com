@@ -38,6 +38,34 @@
                   </div>
                 </div>
 
+            @if (!empty($extraLands))
+
+                <div class="card">
+                  <div class="card-body">
+                    <div class="card-title">Campos de otras Organizaciones</div>
+                    <table class="table-datatable table table-striped table-hover mv-lg" id="datatable3">
+                      <thead>
+                        <tr>
+                          <th class="sort-numeric">ID</th>
+                          <th>Nombre</th>
+                          <th>Dueño</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      @foreach ($extraLands as $land)
+                        <tr class="row-{{ $land['id'] }}">
+                          <td>{{ $land['id'] }}</td>
+                          <td><a href="/lands/{{ $land['id'] }}">{{ $land['description'] }}</a></td>
+                          <td>{{ $land['organization']['description'] }}</td>
+                        </tr>
+                      @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+            @endif
+
             @if (session('user')['admin'])
 
                 <div class="floatbutton">

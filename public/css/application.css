@@ -8040,3 +8040,7 @@ table#datatableDashboard .btn-link {
 table#datatableDashboard > tbody > tr > td > .pager {
   margin: 0px !important;
 }
+
+.datepicker {
+  left: 0px !important;
+}

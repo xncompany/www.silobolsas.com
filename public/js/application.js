@@ -1455,6 +1455,28 @@
             }
         });
 
+        $('#datatable3').dataTable({
+            'paging': false, // Table pagination
+            'ordering': true, // Column ordering
+            'info': false, // Bottom left status text
+            'responsive': true, 
+    
+            // Text translation options
+            // Note the required keywords between underscores (e.g _MENU_)
+            oLanguage: {
+                sSearch: '<em class="ion-search"></em>',
+                sLengthMenu: '_MENU_ items encontrados',
+                info: 'Mostrando página _PAGE_ de _PAGES_',
+                zeroRecords: 'Nothing found - sorry',
+                infoEmpty: 'No records available',
+                infoFiltered: '(filtered from _MAX_ total records)',
+                oPaginate: {
+                    sNext: '<em class="ion-ios-arrow-right"></em>',
+                    sPrevious: '<em class="ion-ios-arrow-left"></em>'
+                }
+            }
+        });
+
         $('#datatable2').dataTable({
             'paging': true, // Table pagination
             'ordering': true, // Column ordering

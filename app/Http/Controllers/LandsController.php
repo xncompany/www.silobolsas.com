@@ -15,10 +15,14 @@ class LandsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function list() {
+    public function list() 
+    {
         $idOrganization = session('user')['organization']['id'];
         $lands = (new LandsRepository)->list($idOrganization);
-        return view('lands')->with('lands', $lands);
+
+        $extraLands = (new LandsRepository)->listByUser(session('user')['id']);
+
+        return view('lands')->with('lands', $lands)->with('extraLands', $extraLands);
     }
 
     /**

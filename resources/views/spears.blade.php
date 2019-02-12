@@ -88,10 +88,10 @@
                         <div class="pull-right dropdown">
                           <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false"><em class="ion-stats-bars"></em></button>
                           <ul class="dropdown-menu md-dropdown-menu dropdown-menu-right" role="menu">
-                            <li><a href="/silobags/{!! $id !!}?unit=0">Temperatura & Humedad & CO2</a></li>
-                            <li><a href="/silobags/{!! $id !!}?unit=1">Temperatura</a></li>
-                            <li><a href="/silobags/{!! $id !!}?unit=2">Humedad</a></li>
-                            <li><a href="/silobags/{!! $id !!}?unit=3">CO2</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit=0&organization=">Temperatura & Humedad & CO2</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit=1&organization={!! $organization !!}">Temperatura</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit=2&organization={!! $organization !!}">Humedad</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit=3&organization={!! $organization !!}">CO2</a></li>
                           </ul>
                         </div>
 
@@ -166,7 +166,9 @@
                               <th>Silobolsa</th>
                               <th>Campo</th>
                               <th>Alta</th>
+                              @if ($owner)
                               <th>Eliminar</th>
+                              @endif
                             </tr>
                           </thead>
                           <tbody>
@@ -175,11 +177,13 @@
                               @foreach ($silobag['devices'] as $device)
                                 <tr class="row-{{ $device['id'] }}">
                                   <td>{{ $device['id'] }}</td>
-                                  <td><a href="/spears/{{ $device['id'] }}">{{ $device['idLess'] }}</a></td>
+                                  <td><a href="/spears/{{ $device['id'] }}?organization={!! $organization !!}">{{ $device['idLess'] }}</a></td>
                                   <td>{{ $silobag['description'] }}</td>
                                   <td>{{ $land['description'] }}</td>
                                   <td>{{ $device['createdAt'] }}</td>
+                                  @if ($owner)
                                   <td><a data-id="{{ $device['id'] }}" class="btn ion-android-delete delete-device" href="#"></a></td>
+                                  @endif
                                 </tr>
                               @endforeach
                             @endforeach

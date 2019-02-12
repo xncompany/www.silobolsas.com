@@ -17,7 +17,8 @@ class SilobagsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function list() {
+    public function list(Request $request) 
+    {
         $idOrganization = session('user')['organization']['id'];
         $lands = (new LandsRepository)->list($idOrganization);
         $list = (new SilobagsRepository)->list($idOrganization);
@@ -32,9 +33,33 @@ class SilobagsController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function listByLand($idLand) {
+    public function listByLand($idLand) 
+    {
         $idOrganization = session('user')['organization']['id'];
         $lands = (new LandsRepository)->list($idOrganization);
+
+        // is it from my Organization?
+        $found = false;
+        foreach ($lands as $land) 
+        {
+            if ($land['id'] == $idLand) {
+                $found = true;
+                break;
+            }
+        }
+
+        if (!$found) {
+            // es de otra organización
+            $lands = (new LandsRepository)->listByUser(session('user')['id']);
+            foreach ($lands as $land) 
+            {
+                if ($land['id'] == $idLand) {
+                    $idOrganization = $land['organization']['id'];
+                    break;
+                }
+            }
+        }
+
         $list = (new SilobagsRepository)->list($idOrganization, $idLand);
         return view('silobags')
                 ->with('list', $list)
