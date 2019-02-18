@@ -108,6 +108,9 @@ class SilobagsController extends Controller
         $start = request()->input('start');
         $end = request()->input('end');
 
+
+        session(['dateStart' => $start, 'dateEnd' => $end]);
+
         $data = $this->parseChartData((new SilobagsRepository)->chart($id, $unit, $start, $end));
         $spears = explode(',', request()->input('spears'));
         $result = array();

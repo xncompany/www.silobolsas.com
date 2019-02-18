@@ -24,6 +24,8 @@ class DevicesController extends Controller
         return view('spears')
                 ->with('list', $list)
                 ->with('chart', false)
+                ->with('owner', false)
+                ->with('organization', $idOrganization)
                 ->with('lands', $lands);
     }
 
@@ -44,11 +46,18 @@ class DevicesController extends Controller
         $list = (new DevicesRepository)->list($idOrganization, $idSilobag);
         $lands = (new SilobagsRepository)->list($idOrganization);
 
-        $unit = isset($_GET['unit']) ? $_GET['unit'] : 0;
-        $days = isset($_GET['days']) ? $_GET['days'] : 365;
+        if (null !== (session('dateStart'))) {
+            $start = session('dateStart');
+            $end = session('dateEnd');
+        } else {
+            $start = date('m/d/Y', time() - (365 * 24 * 60 * 60));
+            $end = date('m/d/Y');
+        }
 
-        $start = date('m/d/Y', time() - (365 * 24 * 60 * 60));
-        $end = date('m/d/Y');
+        session(['dateStart' => $start, 'dateEnd' => $end]);
+
+        $days = isset($_GET['days']) ? $_GET['days'] : 365;
+        $unit = isset($_GET['unit']) ? $_GET['unit'] : 0;
 
         return view('spears')
                 ->with('owner', $owner)

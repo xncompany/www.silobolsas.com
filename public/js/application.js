@@ -1680,6 +1680,9 @@
         {
             start = dataPicker.inputs[0].value;
             end = dataPicker.inputs[1].value;
+        } else {
+            start = $('[name="start"]').val();
+            end = $('[name="end"]').val();
         }
 
         var s = unit;

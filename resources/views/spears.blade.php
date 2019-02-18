@@ -88,7 +88,7 @@
                         <div class="pull-right dropdown">
                           <button class="btn btn-flat btn-flat-icon" type="button" data-toggle="dropdown" aria-expanded="false"><em class="ion-stats-bars"></em></button>
                           <ul class="dropdown-menu md-dropdown-menu dropdown-menu-right" role="menu">
-                            <li><a href="/silobags/{!! $id !!}?unit=0&organization=">Temperatura & Humedad & CO2</a></li>
+                            <li><a href="/silobags/{!! $id !!}?unit=0&organization={!! $organization !!}">Temperatura & Humedad & CO2</a></li>
                             <li><a href="/silobags/{!! $id !!}?unit=1&organization={!! $organization !!}">Temperatura</a></li>
                             <li><a href="/silobags/{!! $id !!}?unit=2&organization={!! $organization !!}">Humedad</a></li>
                             <li><a href="/silobags/{!! $id !!}?unit=3&organization={!! $organization !!}">CO2</a></li>
