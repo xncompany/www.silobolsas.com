@@ -141,6 +141,15 @@ class SilobagsController extends Controller
             $device['label'] = $lessId;
             $device['data'] = array();
             foreach ($items as $key => $value) {
+                if ($key == "Jan") {
+                    $key = "Ene";
+                } else if ($key == "Apr") {
+                    $key = "Abr";
+                } else if ($key == "Aug") {
+                    $key = "Ago";
+                } else if ($key == "Dec") {
+                    $key = "Dic";
+                }
                 $device['data'][] = array($key, $value);
             }
             $result[] = $device;
